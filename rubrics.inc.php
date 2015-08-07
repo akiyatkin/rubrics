@@ -2,7 +2,7 @@
 
 infra_require('*infra/ext/template.php');
 
-/**
+/*
  * Найти указанный в $str файл.
  */
 use itlife\files;
@@ -161,7 +161,6 @@ function rub_list($dir, $start = 0, $count = 0, $exts = array())
 {
 	$conf = infra_config();
 
-
 	$files = infra_cache(array($dir), 'rub_list', function ($dir, $start, $count, $exts) {
 		$dir = infra_theme($dir);
 
@@ -210,14 +209,14 @@ function _rub_list($dir, $start, $count, $exts)
 			} else {
 				$re = '';
 			}
-			if (!in_array($ext,array('mht', 'tpl', 'html', 'docx'))) {
+			if (!in_array($ext, array('mht', 'tpl', 'html', 'docx'))) {
 				continue;
 			}
-			
-			if (in_array($ext, array('mht', 'tpl', 'html','txt'))) {
-				$rr=files\Mht::preview(infra_toutf($dir).$file);
-			} else if (in_array($ext, array('docx'))) {
-				$rr=files\Docx::preview(infra_toutf($dir).$file);
+
+			if (in_array($ext, array('mht', 'tpl', 'html', 'txt'))) {
+				$rr = files\Mht::preview(infra_toutf($dir).$file);
+			} elseif (in_array($ext, array('docx'))) {
+				$rr = files\Docx::preview(infra_toutf($dir).$file);
 			}
 
 			$rr['size'] = round($size / 1000000, 2);
