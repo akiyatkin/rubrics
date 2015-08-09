@@ -1,4 +1,5 @@
 {
+	"unick":"rubrics",
 	"child":{
 		"tpl":["<h1>{crumb.name}</h1><p>{infra.conf.rubrics.404}</p><p><a href='?'>{infra.conf.rubrics.link}</a></p>"],
 		"tplroot":"root",
@@ -6,6 +7,7 @@
 		"showanimate":true,
 		"layers":{
 			"seojsontpl":"*{infra.conf.rubrics.main}/{crumb.name}.json",
+			"istpl":"{infrajs.find(:unick,:rubrics).childs[crumb.name]??:yes}",
 			"tplcheck":true,
 			"autoedittpl":{"fast":"*{infra.conf.rubrics.main}/{crumb.name}"},
 			"tpltpl":"*rubrics/rubrics.php?type={infra.conf.rubrics.main}&id={crumb.name}&show"

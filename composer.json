@@ -7,7 +7,8 @@
 		"email": "info@itlife-studio.ru"
 	}],
 	"require": {
-		"itlife/files": "~1"
+		"itlife/files": "~1",
+		"itlife/infrajs": "~1"
 	},
 	"autoload": {
 		"psr-4": { "itlife\\rubrics\\": "/" }

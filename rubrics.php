@@ -21,7 +21,7 @@ if (!empty($_GET['id'])) {
 	$id = $_GET['id'];
 
 	$res = rub_search($dir, $id, $exts);
-
+	
 	if (isset($_GET['image'])) {
 		if ($res['images']) {
 			$data = file_get_contents(infra_tofs($res['images'][0]['src']));
@@ -35,8 +35,7 @@ if (!empty($_GET['id'])) {
 		$conf = infra_config();
 
 		if (!$res) {
-			//@header("Status: 404 Not Found");
-			//@header("HTTP/1.0 404 Not Found");
+			header("HTTP/1.0 404 Not Found");
 		} else {
 			$conf = infra_config();
 			$src = $dir.$res['file'];
@@ -56,7 +55,7 @@ if (!empty($_GET['id'])) {
 		}
 		exit;
 	} else {
-		return infra_echo($res);
+		return infra_err($res, 'id что?');
 	}
 } elseif (isset($_GET['list'])) {
 	$lim = @$_GET['lim'];
@@ -74,5 +73,5 @@ if (!empty($_GET['id'])) {
 
 	return infra_ret($ans);
 } else {
-	return infra_echo($ans, 'Недостаточно параметров');
+	return infra_err($ans, 'Недостаточно параметров');
 }
