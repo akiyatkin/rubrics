@@ -18,7 +18,7 @@ if ($conf['rubrics']['list'][$type]['type'] == 'info') {
 
 if (!empty($_GET['id'])) {
 	//Загрузка файла
-	$id = $_GET['id'];
+	$id = infra_toutf($_GET['id']);
 
 	$res = rub_search($dir, $id, $exts);
 	
