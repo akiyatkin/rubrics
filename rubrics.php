@@ -15,13 +15,12 @@ if ($conf['rubrics']['list'][$type]['type'] == 'info') {
 } else {
 	$exts = array();
 }
-
 if (!empty($_GET['id'])) {
 	//Загрузка файла
 	$id = infra_toutf($_GET['id']);
 
 	$res = rub_search($dir, $id, $exts);
-	
+
 	if (isset($_GET['image'])) {
 		if ($res['images']) {
 			$data = file_get_contents(infra_tofs($res['images'][0]['src']));
