@@ -1,3 +1,5 @@
+{404:}
+	<h1>{crumb.name}</h1><p>{infra.conf.rubrics.404}</p><p><a href='?'>{infra.conf.rubrics.link}</a></p>
 {POPTUBE:}
 	{conf_ids::POPTUBEs}
 {POPTUBEs:}

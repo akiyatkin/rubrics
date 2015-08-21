@@ -1,8 +1,9 @@
 {
 	"unick":"rubrics",
 	"child":{
-		"tpl":["<h1>{crumb.name}</h1><p>{infra.conf.rubrics.404}</p><p><a href='?'>{infra.conf.rubrics.link}</a></p>"],
-		"tplroot":"root",
+		"tpl":"*rubrics/rubrics.tpl",
+		"tplroot":"404",
+		"parsedtpl":"{crumb.name}",
 		"autoedittpl":{"fast":"*{infra.conf.rubrics.main}/{crumb.name}"},
 		"showanimate":true,
 		"layers":{

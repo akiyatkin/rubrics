@@ -1,10 +1,10 @@
 <?php
 
 infra_require('*rubrics/rubrics.inc.php');
-$type = $_GET['type'];
+$type = infra_toutf($_GET['type']);
 $conf = infra_config();
-
 $ans = array();
+
 if (empty($conf['rubrics']['list'][$type])) {
 	return infra_err($ans, 'Undefined type '.$type);
 }
