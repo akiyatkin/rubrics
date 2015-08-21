@@ -40,7 +40,7 @@ function rub_article($src)
 	$html = infra_loadTEXT('*files/get.php?'.$src);
 
 	$info = infra_srcinfo($src);
-	if (!in_array($info['ext'], array('html', 'tpl'))) {
+	if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
 		$html = preg_replace('/<table>/', '<table class="table table-striped">', $html);
 	}
 
@@ -209,11 +209,11 @@ function _rub_list($dir, $start, $count, $exts)
 			} else {
 				$re = '';
 			}
-			if (!in_array($ext, array('mht', 'tpl', 'html', 'docx'))) {
+
+			if (!in_array($ext, array('mht', 'tpl', 'html', 'docx','php'))) {
 				continue;
 			}
-
-			if (in_array($ext, array('mht', 'tpl', 'html', 'txt'))) {
+			if (in_array($ext, array('mht', 'tpl', 'html', 'txt','php'))) {
 				$rr = files\Mht::preview(infra_toutf($dir).$file);
 			} elseif (in_array($ext, array('docx'))) {
 				$rr = files\Docx::preview(infra_toutf($dir).$file);
