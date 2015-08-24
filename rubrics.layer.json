@@ -62,7 +62,7 @@
 		"list":{
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div>"],
 
-			"autoedittpl":{"fast":"*{crumb.name}/"},
+			
 			"divs":{
 				"rubricstitle":{
 					"tpl":["<h1>{infra.conf.rubrics.list[crumb.name].title}</h1>"],
@@ -71,6 +71,7 @@
 				"rubricscontent":{
 					"tpl":"*rubrics/rubrics.tpl",
 					"tplroot":"PAGES",
+					"autoedittpl":{"fast":"*{crumb.name}/"},
 					"jsontpl":"*rubrics/rubrics.php?type={crumb.name}&list&lim=0,50",
 					"child":{
 						"showanimate":true,
