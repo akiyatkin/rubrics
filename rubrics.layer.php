@@ -24,7 +24,7 @@ foreach ($list as $rub => $param) {
 	}
 	$layer['childs'][$rub] = $types[$param['type']];
 	if ($conf['rubrics']['main'] == $rub) {
-		$layer['childs'][$rub]['crumb'] = '/';
+		$layer['childs'][$rub]['config']['main'] = true;
 	}
 }
 

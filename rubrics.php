@@ -20,7 +20,6 @@ if (!empty($_GET['id'])) {
 	$id = infra_toutf($_GET['id']);
 
 	$res = rub_search($dir, $id, $exts);
-
 	if (isset($_GET['image'])) {
 		if ($res['images']) {
 			$data = file_get_contents(infra_tofs($res['images'][0]['src']));
@@ -38,7 +37,6 @@ if (!empty($_GET['id'])) {
 		} else {
 			$conf = infra_config();
 			$src = $dir.$res['file'];
-
 			echo rub_article($src);
 		}
 

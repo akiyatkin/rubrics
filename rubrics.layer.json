@@ -16,6 +16,7 @@
 	},
 	"childs":{
 		"info":{
+			"config":{ },
 			"seojsontpl":"*{crumb.name}/{crumb.name}.json",
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div>"],
 			"tplroot":"root",
@@ -60,6 +61,7 @@
 			}
 		},
 		"list":{
+			"config":{ },
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div>"],
 
 			
