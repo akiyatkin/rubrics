@@ -164,7 +164,7 @@ function rub_list($dir, $start = 0, $count = 0, $exts = array())
 		$dir = infra_theme($dir);
 
 		return _rub_list($dir, $start, $count, $exts);
-	}, array($dir, $start, $count, $exts), true);
+	}, array($dir, $start, $count, $exts));
 
 	return $files;
 }
