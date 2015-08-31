@@ -4,7 +4,9 @@ infra_require('*rubrics/rubrics.inc.php');
 $type = infra_toutf($_GET['type']);
 $conf = infra_config();
 $ans = array();
-
+/*
+	type два смысла.. type blog - имя рубрики и type list то как отображается всё
+*/
 if (empty($conf['rubrics']['list'][$type])) {
 	return infra_err($ans, 'Undefined type '.$type);
 }
@@ -34,35 +36,41 @@ if (!empty($_GET['id'])) {
 
 		if (!$res) {
 			header("HTTP/1.0 404 Not Found");
+			return;
 		} else {
 			$conf = infra_config();
 			$src = $dir.$res['file'];
-			echo rub_article($src);
+			return rub_article($src);
 		}
-
-		return;
+		
 	} elseif (isset($_GET['load'])) {
 		$conf = infra_config();
+
 		if (!$res) {
 			//@header("Status: 404 Not Found");
 			//@header("HTTP/1.0 404 Not Found");
-			@header('location: http://'.$_SERVER['HTTP_HOST'].'/'.infra_view_getRoot().'?Файлы/'.$id);
+			@header('location: '.infra_view_getPath().'?'.$type.'/'.$id);//Просто редирект на страницу со списокм всех файлов
 		} else {
-			@header('location: http://'.$_SERVER['HTTP_HOST'].'/'.infra_view_getRoot().'?*autoedit/download.php?'.$dir.$res['file']);
+			@header('location: '.infra_view_getPath().'?*autoedit/download.php?'.$dir.$res['file']);
 		}
 		exit;
 	} else {
 		return infra_err($res, 'id что?');
 	}
 } elseif (isset($_GET['list'])) {
-	$lim = @$_GET['lim'];
-	$p = explode(',', $lim);
-	$start = 0;
-	$count = 0;
-	if ($p) {
-		$start = $p[0];
-		$count = @$p[1];
+	if (isset($_GET['lim'])) {
+		$lim = $_GET['lim'];
+	} else {
+		$lim='0,100';
 	}
+
+	$p = explode(',', $lim);
+	if(sizeof($p)!=2){
+		return infra_err($ans, 'Is wrong paramter lim');
+	}
+	$start = (int)$p[0];
+	$count = (int)$p[1];
+	
 
 	$ar = rub_list($dir, $start, $count, $exts);
 	$ar = array_values($ar);

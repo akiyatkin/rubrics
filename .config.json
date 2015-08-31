@@ -11,15 +11,15 @@
 			},
 			"Блог":{
 				"title":"Блог",
-				"type":"info"
+				"type":"list"
 			},
 			"Файлы":{
 				"title":"Файлы",
-				"type":"info"
+				"type":"files"
 			},
 			"События":{
 				"title":"События",
-				"type":"info"
+				"type":"list"
 			}
 		}
 	}

@@ -16,6 +16,7 @@ function rub_search($dir, $str, $exts)
 			   return $files[$str];
 	}
 	foreach ($files as $d) {
+
 		if (mb_strtolower($d['name']) == mb_strtolower($str)) {
 			return $d;
 		}
@@ -164,7 +165,7 @@ function rub_list($dir, $start = 0, $count = 0, $exts = array())
 		$dir = infra_theme($dir);
 
 		return _rub_list($dir, $start, $count, $exts);
-	}, array($dir, $start, $count, $exts));
+	}, array($dir, $start, $count, $exts),isset($_GET['re']));
 
 	return $files;
 }
@@ -183,6 +184,7 @@ function _rub_list($dir, $start, $count, $exts)
 	}
 	if (is_dir($dir) && $dh = opendir($dir)) {
 		$files = array();
+	
 		while (($file = readdir($dh)) !== false) {
 			if ($file[0] == '.') {
 				continue;
@@ -197,21 +199,15 @@ function _rub_list($dir, $start, $count, $exts)
 				continue;
 			}
 			$rr = infra_nameinfo(infra_toutf($file));
-			if ($exts && !in_array($rr['ext'], $exts)) {
+			$ext = $rr['ext'];
+			if ($exts && !in_array($ext, $exts)) {
 				continue;
 			}
 			$size = filesize($dir.$file);
 			$file = infra_toutf($file);
-			$ext = $rr['ext'];
-			if (isset($_GET['re'])) {
-				$re = '&re=1';
-			} else {
-				$re = '';
-			}
+			
+			
 
-			if (!in_array($ext, array('mht', 'tpl', 'html', 'docx','php'))) {
-				continue;
-			}
 			if (in_array($ext, array('mht', 'tpl', 'html', 'txt','php'))) {
 				$rr = files\Mht::preview(infra_toutf($dir).$file);
 			} elseif (in_array($ext, array('docx'))) {
