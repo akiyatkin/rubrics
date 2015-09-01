@@ -33,16 +33,17 @@ if (!empty($_GET['id'])) {
 		return;
 	} elseif (isset($_GET['show'])) {
 		$conf = infra_config();
-
 		if (!$res) {
 			header("HTTP/1.0 404 Not Found");
 			return;
 		} else {
 			$conf = infra_config();
 			$src = $dir.$res['file'];
-			return rub_article($src);
+			$text=rub_article($src);
+			echo $text;
+			return;
 		}
-		
+
 	} elseif (isset($_GET['load'])) {
 		$conf = infra_config();
 
@@ -70,7 +71,7 @@ if (!empty($_GET['id'])) {
 	}
 	$start = (int)$p[0];
 	$count = (int)$p[1];
-	
+
 
 	$ar = rub_list($dir, $start, $count, $exts);
 	$ar = array_values($ar);
