@@ -9,7 +9,7 @@
 		<tr>
 			<td>
 				<img src="?*imager/imager.php?src=*autoedit/icons/{ext}.png&w=16"></td>
-			<td><a href="?*rubrics/rubrics.php?id={name}&type={crumb.name}&load" title="{file}">{name}</a></td>
+			<td><a href="?*rubrics/rubrics.php?id={id|name}&type={crumb.name}&load" title="{file}">{name}</a></td>
 			<td>{size}&nbsp;Mb</td>
 			<td>{~date(:j.m.Y,date)}</td>
 		</tr>

@@ -85,51 +85,47 @@ END;
 	} while (sizeof($match) > 1);
 
 	//files
-	setlocale(LC_ALL, 'ru_RU.UTF-8');
+	//setlocale(LC_ALL, 'ru_RU.UTF-8');
 	$files = array();
-	$pattern = '/(<a.*href="[^"]*infra\/[^"]*\/files\.php[^"]*id=(\d+)&[^"]*load".*>)([^~<]*?)(<\/a>)/u';
+	$pattern = '/(<a.*href="[^"]*rubrics\/rubrics\.php[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)([^~<]*?)(<\/a>)/u';
 	do {
 		$match = array();
 		preg_match($pattern, $html, $match);
-		/*echo '<pre>';
-		print_r($match);
-		exit;*/
 		if (sizeof($match) > 1) {
 			$a = $match[1];
 			$id = $match[2];
-			$title = $match[3];
-			$aa = $match[4];
-
-			$files[] = $id;
-
-			$html = preg_replace($pattern, $a.$title.'~'.$aa, $html, 1);
+			$type = $match[3];
+			$title = $match[4];
+			$aa=$match[5];
+			$files[] = array('id' => $id, 'type' => $type);
+			$html = preg_replace($pattern, $a.'~'.$title.$aa, $html, 1);
 		}
 	} while (sizeof($match) > 1);
-
+	
 	$conf = infra_config();
-	$dir = $conf['files']['folder_files'];
 	$filesd = array();
-	foreach ($files as $id) {
-		$filed = rub_get($dir, $id, array());
+	foreach ($files as $f) {
+		$filed = rub_get($f['type'], $f['id'], array());
 		if ($filed) {
+			$filed['type']=$f['type'];
 			$filesd[$id] = $filed;
 		}
 	}
-
-	$pattern = '/(<a.*href="[^"]*infra\/[^"]*\/files\.php[^"]*id=(\d+)&[^"]*load".*>)([^~<]*?)~(<\/a>)/u';
+	
+	$pattern = '/(<a.*href="[^"]*rubrics\/rubrics\.php[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)~([^~<]*?)(<\/a>)/u';
 	$tpl = <<<END
 		<nobr>
-			<a href="?*files/files.php?id={id}&type=files&load" title="{name}">{title}</a>
+			<a href="?*rubrics/rubrics.php?id={id}&type={type}&load" title="{name}">{title}</a>
 			<img style="margin-right:3px; margin-bottom:-4px;" src="?*imager/imager.php?src=*autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Mb</nobr>
 END;
 	do {
 		preg_match($pattern, $html, $match);
-
+		
 		if (sizeof($match) > 1) {
 			$a = $match[1];
-			$title = $match[3];
-			$aa = $match[4];
-
+			$title = $match[4];
+			$aa = $match[5];
+			$type = $match[3];
 			$id = $match[2];
 
 			if ($filesd[$id]) {
@@ -147,9 +143,10 @@ END;
 	return $html;
 }
 
-function rub_get($dir, $id, $exts)
+function rub_get($type, $id, $exts)
 {
-	$files = rub_list($dir, 0, 0, $exts);
+	if(!$type)return;
+	$files = rub_list('~'.$type.'/', 0, 0, $exts);
 	$res = $files[$id];
 	if (!$res) {
 		$res = array();
