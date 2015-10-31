@@ -75,6 +75,11 @@ if (!empty($_GET['id'])) {
 
 	$ar = rub_list($dir, $start, $count, $exts);
 	$ar = array_values($ar);
+	if (!empty($_GET['chunk'])) {
+		$chunk = (int) $_GET['chunk'];
+		if (!$chunk) $chunk = 1;
+		$ar = array_chunk($ar, $chunk);
+	}
 	$ans['list'] = $ar;
 
 	return infra_ret($ans);
