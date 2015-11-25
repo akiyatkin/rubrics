@@ -5,7 +5,7 @@ infra_require('*infra/ext/template.php');
 /*
  * Найти указанный в $str файл.
  */
-use itlife\files;
+use infrajs\files;
 
 function rub_search($dir, $str, $exts)
 {
