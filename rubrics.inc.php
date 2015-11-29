@@ -201,8 +201,8 @@ function _rub_list($dir, $start, $count, $exts)
 				continue;
 			}
 			$size = filesize($dir.$file);
-			$file = infra_toutf($file);
 			
+			$file = infra_toutf($file);
 			
 
 			if (in_array($ext, array('mht', 'tpl', 'html', 'txt','php'))) {
