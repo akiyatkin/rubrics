@@ -3,7 +3,7 @@
 	"description": "Any rubrics - blog, pages, events",
 	"license": "GPL3",
 	"require": {
-		"infrajs/files": "~1",
+		"infrajs/doc": "~1",
 		"infrajs/controller": "~1"
 	}
 }
