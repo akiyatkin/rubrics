@@ -1,14 +1,14 @@
 <?php
 
-infra_require('*rubrics/rubrics.inc.php');
-$type = infra_toutf($_GET['type']);
-$conf = infra_config();
+Path::req('*rubrics/rubrics.inc.php');
+$type = Path::toutf($_GET['type']);
+$conf = Infra::config();
 $ans = array();
 /*
 	type два смысла.. type blog - имя рубрики и type list то как отображается всё
 */
 if (empty($conf['rubrics']['list'][$type])) {
-	return infra_err($ans, 'Undefined type '.$type);
+	return Ans::err($ans, 'Undefined type '.$type);
 }
 $dirs = infra_dirs();
 $dir = '*'.$type.'/';
@@ -19,12 +19,12 @@ if ($conf['rubrics']['list'][$type]['type'] == 'info') {
 }
 if (!empty($_GET['id'])) {
 	//Загрузка файла
-	$id = infra_toutf($_GET['id']);
+	$id = Path::toutf($_GET['id']);
 
 	$res = rub_search($dir, $id, $exts);
 	if (isset($_GET['image'])) {
 		if ($res['images']) {
-			$data = file_get_contents(infra_tofs($res['images'][0]['src']));
+			$data = file_get_contents(Path::tofs($res['images'][0]['src']));
 			echo $data;
 		} else {
 			//@header('HTTP/1.1 404 Not Found');
@@ -32,12 +32,12 @@ if (!empty($_GET['id'])) {
 
 		return;
 	} elseif (isset($_GET['show'])) {
-		$conf = infra_config();
+		$conf = Infra::config();
 		if (!$res) {
 			header("HTTP/1.0 404 Not Found");
 			return;
 		} else {
-			$conf = infra_config();
+			$conf = Infra::config();
 			$src = $dir.$res['file'];
 			$text=rub_article($src);
 			echo $text;
@@ -45,7 +45,7 @@ if (!empty($_GET['id'])) {
 		}
 
 	} elseif (isset($_GET['load'])) {
-		$conf = infra_config();
+		$conf = Infra::config();
 
 		if (!$res) {
 			//@header("Status: 404 Not Found");
@@ -56,7 +56,7 @@ if (!empty($_GET['id'])) {
 		}
 		exit;
 	} else {
-		return infra_err($res, 'id что?');
+		return Ans::err($res, 'id что?');
 	}
 } elseif (isset($_GET['list'])) {
 	if (isset($_GET['lim'])) {
@@ -67,7 +67,7 @@ if (!empty($_GET['id'])) {
 
 	$p = explode(',', $lim);
 	if(sizeof($p)!=2){
-		return infra_err($ans, 'Is wrong paramter lim');
+		return Ans::err($ans, 'Is wrong paramter lim');
 	}
 	$start = (int)$p[0];
 	$count = (int)$p[1];
@@ -82,7 +82,7 @@ if (!empty($_GET['id'])) {
 	}
 	$ans['list'] = $ar;
 
-	return infra_ret($ans);
+	return Ans::ret($ans);
 } else {
-	return infra_err($ans, 'Недостаточно параметров');
+	return Ans::err($ans, 'Недостаточно параметров');
 }

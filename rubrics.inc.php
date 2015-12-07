@@ -1,6 +1,6 @@
 <?php
 
-infra_require('*infra/ext/template.php');
+Path::req('*infra/ext/template.php');
 
 /*
  * Найти указанный в $str файл.
@@ -38,8 +38,8 @@ function rub_ptube2()
 }
 function rub_article($src)
 {
-	$html = infra_loadTEXT('*files/get.php?'.$src);
-	$info = infra_srcinfo($src);
+	$html = Load::loadTEXT('*files/get.php?'.$src);
+	$info = Load::srcInfo($src);
 	if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
 		$html = preg_replace('/<table>/', '<table class="table table-striped">', $html);
 	}
@@ -102,7 +102,7 @@ END;
 		}
 	} while (sizeof($match) > 1);
 	
-	$conf = infra_config();
+	$conf = Infra::config();
 	$filesd = array();
 	foreach ($files as $f) {
 		$filed = rub_get($f['type'], $f['id'], array());
@@ -156,10 +156,10 @@ function rub_get($type, $id, $exts)
 }
 function rub_list($dir, $start = 0, $count = 0, $exts = array())
 {
-	$conf = infra_config();
+	$conf = Infra::config();
 
-	$files = infra_cache(array($dir), 'rub_list', function ($dir, $start, $count, $exts) {
-		$dir = infra_theme($dir);
+	$files = Cache::exec(array($dir), 'rub_list', function ($dir, $start, $count, $exts) {
+		$dir = Path::theme($dir);
 
 		return _rub_list($dir, $start, $count, $exts);
 	}, array($dir, $start, $count, $exts),isset($_GET['re']));
@@ -171,8 +171,8 @@ function _rub_list($dir, $start, $count, $exts)
 	if (!$dir) {
 		return array();
 	}
-	$dir = infra_toutf($dir);
-	$dir = infra_theme($dir);
+	$dir = Path::toutf($dir);
+	$dir = Path::theme($dir);
 
 	$res = array();
 
@@ -195,20 +195,20 @@ function _rub_list($dir, $start, $count, $exts)
 			if (!is_file($dir.$file)) {
 				continue;
 			}
-			$rr = infra_nameinfo(infra_toutf($file));
+			$rr = infra_nameinfo(Path::toutf($file));
 			$ext = $rr['ext'];
 			if ($exts && !in_array($ext, $exts)) {
 				continue;
 			}
 			$size = filesize($dir.$file);
 			
-			$file = infra_toutf($file);
+			$file = Path::toutf($file);
 			
 
 			if (in_array($ext, array('mht', 'tpl', 'html', 'txt','php'))) {
-				$rr = files\Mht::preview(infra_toutf($dir).$file);
+				$rr = files\Mht::preview(Path::toutf($dir).$file);
 			} elseif (in_array($ext, array('docx'))) {
-				$rr = files\Docx::preview(infra_toutf($dir).$file);
+				$rr = files\Docx::preview(Path::toutf($dir).$file);
 			}
 
 			$rr['size'] = round($size / 1000000, 2);
