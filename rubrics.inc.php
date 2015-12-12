@@ -61,7 +61,7 @@ END;
 			$a = $match[1];
 			$aa = $match[4];
 			$files[] = $match[2];
-			$youhtml = infra_template_parse(array($youtpl), $match);
+			$youhtml = Template::parse(array($youtpl), $match);
 			$html = preg_replace($pattern, $youhtml, $html, 1);
 		}
 	} while (sizeof($match) > 1);
@@ -79,7 +79,7 @@ END;
 			$a = $match[1];
 			$aa = $match[4];
 			$files[] = $match[2];
-			$youhtml = infra_template_parse(array($youtpl), $match);
+			$youhtml = Template::parse(array($youtpl), $match);
 			$html = preg_replace($pattern, $youhtml, $html, 1);
 		}
 	} while (sizeof($match) > 1);
@@ -131,7 +131,7 @@ END;
 			if ($filesd[$id]) {
 				$d = $filesd[$id];
 				$d['title'] = $title;
-				$t = infra_template_parse(array($tpl), $d);
+				$t = Template::parse(array($tpl), $d);
 				$html = preg_replace($pattern, $t, $html, 1);
 			} else {
 				$html = preg_replace($pattern, $a.$title.$aa, $html, 1);
@@ -195,7 +195,7 @@ function _rub_list($dir, $start, $count, $exts)
 			if (!is_file($dir.$file)) {
 				continue;
 			}
-			$rr = infra_nameinfo(Path::toutf($file));
+			$rr = Load::nameInfo(Path::toutf($file));
 			$ext = $rr['ext'];
 			if ($exts && !in_array($ext, $exts)) {
 				continue;

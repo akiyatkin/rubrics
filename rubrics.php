@@ -10,8 +10,8 @@ $ans = array();
 if (empty($conf['rubrics']['list'][$type])) {
 	return Ans::err($ans, 'Undefined type '.$type);
 }
-$dirs = infra_dirs();
-$dir = '*'.$type.'/';
+
+$dir = '~'.$type.'/';
 if ($conf['rubrics']['list'][$type]['type'] == 'info') {
 	$exts = array('docx','tpl','mht','html','php');
 } else {
