@@ -1,6 +1,6 @@
 <?php
 
-Path::req('*infra/ext/template.php');
+Path::req('-infra/ext/template.php');
 
 /*
  * Найти указанный в $str файл.
@@ -38,7 +38,7 @@ function rub_ptube2()
 }
 function rub_article($src)
 {
-	$html = Load::loadTEXT('*files/get.php?'.$src);
+	$html = Load::loadTEXT('-doc/get.php?'.$src);
 	$info = Load::srcInfo($src);
 	if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
 		$html = preg_replace('/<table>/', '<table class="table table-striped">', $html);
@@ -87,7 +87,7 @@ END;
 	//files
 	//setlocale(LC_ALL, 'ru_RU.UTF-8');
 	$files = array();
-	$pattern = '/(<a.*href="[^"]*rubrics\/rubrics\.php[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)([^~<]*?)(<\/a>)/u';
+	$pattern = '/(<a.*href="[^"]*rubrics\/rubrics\.php[^"]*id=(\w+)&type=(\w+)&[^"]-load".*>)([^~<]*?)(<\/a>)/u';
 	do {
 		$match = array();
 		preg_match($pattern, $html, $match);
@@ -112,11 +112,11 @@ END;
 		}
 	}
 	
-	$pattern = '/(<a.*href="[^"]*rubrics\/rubrics\.php[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)~([^~<]*?)(<\/a>)/u';
+	$pattern = '/(<a.*href="[^"]*rubrics\/rubrics\.php[^"]*id=(\w+)&type=(\w+)&[^"]-load".*>)~([^~<]*?)(<\/a>)/u';
 	$tpl = <<<END
 		<nobr>
-			<a href="?*rubrics/rubrics.php?id={id}&type={type}&load" title="{name}">{title}</a> 
-			<img style="margin-right:3px; margin-bottom:-4px;" src="?*imager/imager.php?src=*autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Mb</nobr>
+			<a href="?-rubrics/rubrics.php?id={id}&type={type}&load" title="{name}">{title}</a> 
+			<img style="margin-right:3px; margin-bottom:-4px;" src="?-imager/imager.php?src=*autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Mb</nobr>
 END;
 	do {
 		preg_match($pattern, $html, $match);

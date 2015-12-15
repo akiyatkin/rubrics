@@ -2,9 +2,9 @@
 
 infra_admin_modified();
 
-Path::req('*rubrics/rubrics.inc.php');
+Path::req('-rubrics/rubrics.inc.php');
 
-$layer = Load::loadJSON('*rubrics/rubrics.layer.json');
+$layer = Load::loadJSON('-rubrics/rubrics.layer.json');
 
 $conf = Infra::config();
 if (empty($conf['rubrics'])) {

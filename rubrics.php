@@ -1,6 +1,6 @@
 <?php
 
-Path::req('*rubrics/rubrics.inc.php');
+Path::req('-rubrics/rubrics.inc.php');
 $type = Path::toutf($_GET['type']);
 $conf = Infra::config();
 $ans = array();
@@ -52,7 +52,7 @@ if (!empty($_GET['id'])) {
 			//@header("HTTP/1.0 404 Not Found");
 			@header('location: '.infra_view_getPath().'?'.$type.'/'.$id);//Просто редирект на страницу со списокм всех файлов
 		} else {
-			@header('location: '.infra_view_getPath().'?*autoedit/download.php?'.$dir.$res['file']);
+			@header('location: '.infra_view_getPath().'?-autoedit/download.php?'.$dir.$res['file']);
 		}
 		exit;
 	} else {
