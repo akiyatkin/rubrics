@@ -2,7 +2,7 @@
 
 Path::req('-rubrics/rubrics.inc.php');
 $type = Path::toutf($_GET['type']);
-$conf = Infra::config();
+$conf = Config::get();
 $ans = array();
 /*
 	type два смысла.. type blog - имя рубрики и type list то как отображается всё
@@ -32,12 +32,12 @@ if (!empty($_GET['id'])) {
 
 		return;
 	} elseif (isset($_GET['show'])) {
-		$conf = Infra::config();
+		$conf = Config::get();
 		if (!$res) {
 			header("HTTP/1.0 404 Not Found");
 			return;
 		} else {
-			$conf = Infra::config();
+			$conf = Config::get();
 			$src = $dir.$res['file'];
 			$text=rub_article($src);
 			echo $text;
@@ -45,7 +45,7 @@ if (!empty($_GET['id'])) {
 		}
 
 	} elseif (isset($_GET['load'])) {
-		$conf = Infra::config();
+		$conf = Config::get();
 
 		if (!$res) {
 			//@header("Status: 404 Not Found");

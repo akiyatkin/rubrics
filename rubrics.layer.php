@@ -6,7 +6,7 @@ Path::req('-rubrics/rubrics.inc.php');
 
 $layer = Load::loadJSON('-rubrics/rubrics.layer.json');
 
-$conf = Infra::config();
+$conf = Config::get();
 if (empty($conf['rubrics'])) {
 	return infra_ans($layer);
 }

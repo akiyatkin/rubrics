@@ -102,7 +102,7 @@ END;
 		}
 	} while (sizeof($match) > 1);
 	
-	$conf = Infra::config();
+	$conf = Config::get();
 	$filesd = array();
 	foreach ($files as $f) {
 		$filed = rub_get($f['type'], $f['id'], array());
@@ -156,7 +156,7 @@ function rub_get($type, $id, $exts)
 }
 function rub_list($dir, $start = 0, $count = 0, $exts = array())
 {
-	$conf = Infra::config();
+	$conf = Config::get();
 
 	$files = Cache::exec(array($dir), 'rub_list', function ($dir, $start, $count, $exts) {
 		$dir = Path::theme($dir);
