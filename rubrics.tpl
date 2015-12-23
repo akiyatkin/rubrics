@@ -8,8 +8,8 @@
 	{Fitem:}
 		<tr>
 			<td>
-				<img src="?-imager/imager.php?src=-autoedit/icons/{ext}.png&w=16"></td>
-			<td><a href="?-rubrics/rubrics.php?id={id|name}&type={crumb.name}&load" title="{file}">{name}</a></td>
+				<img src="?-imager/?src=-autoedit/icons/{ext}.png&w=16"></td>
+			<td><a href="?-rubrics/?id={id|name}&type={crumb.name}&load" title="{file}">{name}</a></td>
 			<td>{size}&nbsp;Mb</td>
 			<td>{~date(:j.m.Y,date)}</td>
 		</tr>
@@ -21,7 +21,7 @@
 			{date:Pdate}
 			<h2 style="margin-top: 5px;">{heading|name}</h2>
 			{preview}
-			<a style="text-decoration: none; float: right;" href="?{:link}{name}">Читать полностью</a>
+			<a style="text-decoration: none; float: right;" href="/{:link}{name}">Читать полностью</a>
 		</div>
 		<hr>
 	{Pdate:}<i style="color: #aaaaaa;">{:date}</i>

@@ -11,7 +11,7 @@
 			"istpl":"{infrajs.find(:unick,:rubrics).childs[crumb.name]??:yes}",
 			"tplcheck":true,
 			"autoedittpl":{"fast":"~{infra.config(:rubrics).main}/{crumb.name}"},
-			"tpltpl":"-rubrics/rubrics.php?type={infra.config(:rubrics).main}&id={crumb.name}&show"
+			"tpltpl":"-rubrics/?type={infra.config(:rubrics).main}&id={crumb.name}&show"
 		}
 	},
 	"childs":{
@@ -27,12 +27,12 @@
 					"tplroot":"root"
 				},
 				"rubricscontent":{
-					"jsontpl":"-rubrics/rubrics.php?type={crumb.name}&list&lim=0,50",
+					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
 					"tpl":"-rubrics/rubrics.tpl",
 					"tplroot":"PAGES",
 					"child":{
 						"showanimate":true,
-						"tpltpl":"-rubrics/rubrics.php?type={crumb.parent.name}&show&id={crumb.name}",
+						"tpltpl":"-rubrics/?type={crumb.parent.name}&show&id={crumb.name}",
 						"autoedittpl":{ "fast":"~{crumb.parent.name}/{crumb.name}" },
 						"divs":{
 							"rubricstitle":{
@@ -54,7 +54,7 @@
 					"tplroot":"root"
 				},
 				"rubricscontent":{
-					"jsontpl":"-rubrics/rubrics.php?type={crumb.name}&list&lim=0,50",
+					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
 					"tpl":"-rubrics/rubrics.tpl",
 					"tplroot":"FILES"
 				}
@@ -74,10 +74,10 @@
 					"tpl":"-rubrics/rubrics.tpl",
 					"tplroot":"PAGES",
 					"autoedittpl":{"fast":"~{crumb.name}/"},
-					"jsontpl":"-rubrics/rubrics.php?type={crumb.name}&list&lim=0,50",
+					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
 					"child":{
 						"showanimate":true,
-						"tpltpl":"-rubrics/rubrics.php?type={crumb.parent.name}&show&id={crumb.name}",
+						"tpltpl":"-rubrics/?type={crumb.parent.name}&show&id={crumb.name}",
 						"autoedittpl":{ "fast":"~{crumb.parent.name}/{crumb.name}" },
 						"divs":{
 							"rubricstitle":{
