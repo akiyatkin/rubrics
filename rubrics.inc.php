@@ -1,11 +1,10 @@
 <?php
-
-Path::req('-infra/ext/template.php');
-
-/*
- * Найти указанный в $str файл.
- */
-use infrajs\files;
+use infrajs\path\Path;
+use infrajs\load\Load;
+use infrajs\template\Template;
+use infrajs\cache\Cache;
+use infrajs\doc\Docx;
+use infrajs\doc\Mht;
 
 function rub_search($dir, $str, $exts)
 {
@@ -102,7 +101,6 @@ END;
 		}
 	} while (sizeof($match) > 1);
 	
-	$conf = Config::get();
 	$filesd = array();
 	foreach ($files as $f) {
 		$filed = rub_get($f['type'], $f['id'], array());
@@ -116,7 +114,7 @@ END;
 	$tpl = <<<END
 		<nobr>
 			<a href="?-rubrics/rubrics.php?id={id}&type={type}&load" title="{name}">{title}</a> 
-			<img style="margin-right:3px; margin-bottom:-4px;" src="?-imager/imager.php?src=*autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Mb</nobr>
+			<img style="margin-right:3px; margin-bottom:-4px;" src="?-imager/imager.php?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Mb</nobr>
 END;
 	do {
 		preg_match($pattern, $html, $match);
@@ -156,7 +154,6 @@ function rub_get($type, $id, $exts)
 }
 function rub_list($dir, $start = 0, $count = 0, $exts = array())
 {
-	$conf = Config::get();
 
 	$files = Cache::exec(array($dir), 'rub_list', function ($dir, $start, $count, $exts) {
 		$dir = Path::theme($dir);
@@ -206,9 +203,10 @@ function _rub_list($dir, $start, $count, $exts)
 			
 
 			if (in_array($ext, array('mht', 'tpl', 'html', 'txt','php'))) {
-				$rr = files\Mht::preview(Path::toutf($dir).$file);
+				$rr = Mht::preview(Path::toutf($dir).$file);
+				
 			} elseif (in_array($ext, array('docx'))) {
-				$rr = files\Docx::preview(Path::toutf($dir).$file);
+				$rr = Docx::preview(Path::toutf($dir).$file);
 			}
 
 			$rr['size'] = round($size / 1000000, 2);

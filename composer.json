@@ -4,6 +4,11 @@
 	"license": "GPL3",
 	"require": {
 		"infrajs/doc": "~1",
-		"infrajs/controller": "~1"
+		"infrajs/template":"~1",
+		"infrajs/load":"~1",
+		"infrajs/path":"~1",
+		"infrajs/cache":"~1",
+		"infrajs/ans":"~1",
+		"infrajs/config":"~1"
 	}
 }

@@ -1,18 +1,22 @@
 <?php
+use infrajs\path\Path;
+use infrajs\config\Config;
+use infrajs\ans\Ans;
 
-Path::req('-rubrics/rubrics.inc.php');
+$conf = Config::get('rubrics');
+
 $type = Path::toutf($_GET['type']);
-$conf = Config::get();
+
 $ans = array();
 /*
 	type два смысла.. type blog - имя рубрики и type list то как отображается всё
 */
-if (empty($conf['rubrics']['list'][$type])) {
+if (empty($conf['list'][$type])) {
 	return Ans::err($ans, 'Undefined type '.$type);
 }
 
 $dir = '~'.$type.'/';
-if ($conf['rubrics']['list'][$type]['type'] == 'info') {
+if ($conf['list'][$type]['type'] == 'info') {
 	$exts = array('docx','tpl','mht','html','php');
 } else {
 	$exts = array();
@@ -22,6 +26,7 @@ if (!empty($_GET['id'])) {
 	$id = Path::toutf($_GET['id']);
 
 	$res = rub_search($dir, $id, $exts);
+	
 	if (isset($_GET['image'])) {
 		if ($res['images']) {
 			$data = file_get_contents(Path::tofs($res['images'][0]['src']));
@@ -32,12 +37,10 @@ if (!empty($_GET['id'])) {
 
 		return;
 	} elseif (isset($_GET['show'])) {
-		$conf = Config::get();
 		if (!$res) {
 			header("HTTP/1.0 404 Not Found");
 			return;
 		} else {
-			$conf = Config::get();
 			$src = $dir.$res['file'];
 			$text=rub_article($src);
 			echo $text;
@@ -45,7 +48,6 @@ if (!empty($_GET['id'])) {
 		}
 
 	} elseif (isset($_GET['load'])) {
-		$conf = Config::get();
 
 		if (!$res) {
 			//@header("Status: 404 Not Found");

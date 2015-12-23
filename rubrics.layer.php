@@ -1,20 +1,22 @@
 <?php
 
-infra_admin_modified();
+use infrajs\path\Path;
+use infrajs\load\Load;
+use infrajs\ans\Ans;
+use infrajs\config\Config;
 
-Path::req('-rubrics/rubrics.inc.php');
+$conf = Config::get('rubrics');
+
 
 $layer = Load::loadJSON('-rubrics/rubrics.layer.json');
 
-$conf = Config::get();
-if (empty($conf['rubrics'])) {
-	return infra_ans($layer);
-}
+
+
 
 $types = $layer['childs'];
 $layer['childs'] = array();
 
-$list = $conf['rubrics']['list'];
+$list = $conf['list'];
 foreach ($list as $rub => $param) {
 	if (!$param) {
 		continue;
@@ -23,9 +25,9 @@ foreach ($list as $rub => $param) {
 		continue;
 	}
 	$layer['childs'][$rub] = $types[$param['type']];
-	if ($conf['rubrics']['main'] == $rub) {
+	if ($conf['main'] == $rub) {
 		$layer['childs'][$rub]['config']['main'] = true;
 	}
 }
 
-return infra_ans($layer);
+return Ans::ans($layer);
