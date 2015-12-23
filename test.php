@@ -18,6 +18,10 @@ $html=Template::parse(array($tpl),$data);
 
 if (!$html) return Ans::err($ans,'{infra.config(name).main} возрващает пустую строку '.$html);
 
+$tpl='{infra.config(:rubrics).main}';
+$data=true;
+$html=Template::parse(array($tpl),$data);
+if (!$html) return Ans::err($ans,'{infra.config(:rubrics).main} возрващает пустую строку '.$html);
 
 return Ans::ret($ans);
 

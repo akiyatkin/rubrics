@@ -1,5 +1,5 @@
 {404:}
-	<h1>{crumb.name}</h1><p>{infra.conf.rubrics.404}</p><p><a href='.'>{infra.conf.rubrics.link}</a></p>
+	<h1>{crumb.name}</h1><p>{infra.config(:rubrics).404}</p><p><a href='.'>{infra.config(:rubrics).link}</a></p>
 {comma:},
 {FILES:}
 	<table class="table table-striped" style="width:auto">
@@ -28,5 +28,5 @@
 	{date:}{~date(:j F Y,.)}
 	{j F Y:}j{:nbsp}F{:nbsp}Y{:nbsp}
 	{nbsp:}&\n\b\s\p;
-{link:}{infra.conf.rubrics.main=crumb.name??:cn}
+{link:}{infra.config(:rubrics).main=crumb.name??:cn}
 	{cn:}{crumb.name}/
