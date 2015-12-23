@@ -49,7 +49,7 @@
             "size": 0.06,
             "links": [
                 {
-                    "href": "?Контакты",
+                    "href": "/contacts",
                     "title": "Контакты"
                 }
             ]

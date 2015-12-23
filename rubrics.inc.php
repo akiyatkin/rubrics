@@ -113,8 +113,8 @@ END;
 	$pattern = '/(<a.*href="[^"]*rubrics\/rubrics\.php[^"]*id=(\w+)&type=(\w+)&[^"]-load".*>)~([^~<]*?)(<\/a>)/u';
 	$tpl = <<<END
 		<nobr>
-			<a href="?-rubrics/rubrics.php?id={id}&type={type}&load" title="{name}">{title}</a> 
-			<img style="margin-right:3px; margin-bottom:-4px;" src="?-imager/imager.php?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Mb</nobr>
+			<a href="/-rubrics/rubrics.php?id={id}&type={type}&load" title="{name}">{title}</a> 
+			<img style="margin-right:3px; margin-bottom:-4px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Mb</nobr>
 END;
 	do {
 		preg_match($pattern, $html, $match);

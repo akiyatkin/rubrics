@@ -2,6 +2,7 @@
 use infrajs\path\Path;
 use infrajs\config\Config;
 use infrajs\ans\Ans;
+use infrajs\view\View;
 
 $conf = Config::get('rubrics');
 
@@ -52,9 +53,9 @@ if (!empty($_GET['id'])) {
 		if (!$res) {
 			//@header("Status: 404 Not Found");
 			//@header("HTTP/1.0 404 Not Found");
-			@header('location: '.infra_view_getPath().'?'.$type.'/'.$id);//Просто редирект на страницу со списокм всех файлов
+			@header('location: '.View::getPath().'?'.$type.'/'.$id);//Просто редирект на страницу со списокм всех файлов
 		} else {
-			@header('location: '.infra_view_getPath().'?-autoedit/download.php?'.$dir.$res['file']);
+			@header('location: '.View::getPath().'?-autoedit/download.php?'.$dir.$res['file']);
 		}
 		exit;
 	} else {

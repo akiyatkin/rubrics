@@ -8,8 +8,8 @@
 	{Fitem:}
 		<tr>
 			<td>
-				<img src="?-imager/?src=-autoedit/icons/{ext}.png&w=16"></td>
-			<td><a href="?-rubrics/?id={id|name}&type={crumb.name}&load" title="{file}">{name}</a></td>
+				<img src="/-imager/?src=-autoedit/icons/{ext}.png&w=16"></td>
+			<td><a href="/-rubrics/?id={id|name}&type={crumb.name}&load" title="{file}">{name}</a></td>
 			<td>{size}&nbsp;Mb</td>
 			<td>{~date(:j.m.Y,date)}</td>
 		</tr>
