@@ -29,6 +29,6 @@ $tpl='{list::test}{test:}1{:date}{date:}{~date(:F,~true)}';
 $data=Load::loadJSON('-rubrics/?type=events&list');
 $html=Template::parse(array($tpl),$data);
 if (!$html) return Ans::err($ans,' возрващает пустую строку '.$html);
-echo $html;
+
 return Ans::ret($ans);
 
