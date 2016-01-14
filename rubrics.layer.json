@@ -1,5 +1,5 @@
 {
-	"unick":"rubrics",
+	"id":"rubrics",
 	"child":{
 		"tpl":"-rubrics/rubrics.tpl",
 		"tplroot":"404",
