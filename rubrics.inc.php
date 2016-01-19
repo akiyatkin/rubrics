@@ -50,7 +50,9 @@ function rub_article($src)
 	$pattern = '/(<a.*href="'.$ptube.'".*>)'.$ptube.'(<\/a>)/i';
 
 	$youtpl = <<<END
-<iframe width="640" height="480" src="http://www.youtube.com/embed/{3}?rel=0" frameborder="0" allowfullscreen></iframe>
+<div class="embed-responsive embed-responsive-16by9">
+	<iframe  class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
 END;
 
 	do {
@@ -69,7 +71,9 @@ END;
 	$ptube = rub_ptube2();
 	$pattern = '/(<a.*href="'.$ptube.'".*>)'.$ptube.'(<\/a>)/i';
 	$youtpl = <<<END
-	<iframe width="640" height="480" src="http://www.youtube.com/embed/{3}?rel=0" frameborder="0" allowfullscreen></iframe>
+	<div class="embed-responsive embed-responsive-16by9">
+		<iframe class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?rel=0" frameborder="0" allowfullscreen></iframe>
+	</div>
 END;
 	do {
 		$match = array();

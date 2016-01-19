@@ -55,7 +55,9 @@ if (!empty($_GET['id'])) {
 			//@header("HTTP/1.0 404 Not Found");
 			@header('location: '.View::getPath().'?'.$type.'/'.$id);//Просто редирект на страницу со списокм всех файлов
 		} else {
-			@header('location: '.View::getPath().'?-autoedit/download.php?'.$dir.$res['file']);
+			//echo View::getPath().$dir.$res['file'];
+			//exit;
+			@header('location: '.View::getPath().$dir.$res['file']);
 		}
 		exit;
 	} else {
