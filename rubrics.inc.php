@@ -50,9 +50,7 @@ function rub_article($src)
 	$pattern = '/(<a.*href="'.$ptube.'".*>)'.$ptube.'(<\/a>)/i';
 
 	$youtpl = <<<END
-<div class="embed-responsive embed-responsive-16by9">
-	<iframe  class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?rel=0" frameborder="0" allowfullscreen></iframe>
-</div>
+	<img title="Видео" style="cursor:pointer" onclick="$(this).hide().after($(this).data('html'));" data-html='<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>' class="img-responsive" src="https://i.ytimg.com/vi/{3}/hqdefault.jpg">
 END;
 
 	do {
@@ -71,9 +69,7 @@ END;
 	$ptube = rub_ptube2();
 	$pattern = '/(<a.*href="'.$ptube.'".*>)'.$ptube.'(<\/a>)/i';
 	$youtpl = <<<END
-	<div class="embed-responsive embed-responsive-16by9">
-		<iframe class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?rel=0" frameborder="0" allowfullscreen></iframe>
-	</div>
+	<img title="Видео" style="cursor:pointer" onclick="$(this).hide().after($(this).data('html'));" data-html='<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>' class="img-responsive" src="https://i.ytimg.com/vi/{3}/hqdefault.jpg">
 END;
 	do {
 		$match = array();
