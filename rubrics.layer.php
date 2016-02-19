@@ -8,7 +8,7 @@ use infrajs\config\Config;
 $conf = Config::get('rubrics');
 
 
-$layer = Load::loadJSON('-rubrics/rubrics.layer.json');
+$layer = Load::loadJSON('-rubrics/layer.json');
 
 
 

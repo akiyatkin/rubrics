@@ -22,6 +22,7 @@
 			<h2 style="margin-top: 5px;">{heading|name}</h2>
 			{preview}
 			<a style="text-decoration: none; float: right;" href="/{:link}{name}">Читать полностью</a>
+			<div style="clear:both"></div>
 		</div>
 		<hr>
 	{Pdate:}<i style="color: #aaaaaa;">{:date}</i>
@@ -29,4 +30,4 @@
 	{j F Y:}j{:nbsp}F{:nbsp}Y{:nbsp}
 	{nbsp:}&\n\b\s\p;
 {link:}{infra.config(:rubrics).main=crumb.name??:cn}
-	{cn:}{crumb.name}/
+	{cn:}{crumb.name|link}/
