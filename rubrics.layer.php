@@ -4,6 +4,13 @@ use infrajs\path\Path;
 use infrajs\load\Load;
 use infrajs\ans\Ans;
 use infrajs\config\Config;
+use infrajs\config\Nostore;
+
+/**
+ * Формирует созданные в конфиге план рубрик, в виде слоёв
+ * Кэшируется как статика
+ **/
+Nostore::pubStat();
 
 $conf = Config::get('rubrics');
 
