@@ -4,7 +4,7 @@ use infrajs\path\Path;
 use infrajs\load\Load;
 use infrajs\ans\Ans;
 use infrajs\config\Config;
-use infrajs\config\Nostore;
+use infrajs\nostore\Nostore;
 
 /**
  * Формирует созданные в конфиге план рубрик, в виде слоёв
