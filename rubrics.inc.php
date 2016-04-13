@@ -37,7 +37,7 @@ function rub_ptube2()
 }
 function rub_article($src)
 {
-	$html = Load::loadTEXT('-doc/get.php?'.$src);
+	$html = Load::loadTEXT('-doc/get.php?src='.$src);
 	$info = Load::srcInfo($src);
 	if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
 		$html = preg_replace('/<table>/', '<table class="table table-striped">', $html);
