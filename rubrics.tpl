@@ -1,5 +1,5 @@
 {404:}
-	<h1>{crumb.name}</h1><p>{infra.config(:rubrics).404}</p><p><a href='.'>{infra.config(:rubrics).link}</a></p>
+	<h1>{crumb.name}</h1><p>{infra.config(:rubrics).404}</p><p><a href='/'>{infra.config(:rubrics).link}</a></p>
 {comma:},
 {FILES:}
 	<table class="table table-striped" style="width:auto">

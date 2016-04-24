@@ -5,7 +5,7 @@
 ## Подключение
 ````json
 {
-	"external":"*rubrics/rubrics.layer.php"
+	"external":"-rubrics/rubrics.layer.php"
 }
 ```
 В текущем адресном пространстве будут обрабатываться все имена и согласно ```config.rubrics.main``` при наличии в папке ```~pages``` 
@@ -23,7 +23,7 @@
 
 ```json
 {
-	"json":"*rubrics/?type=events&list&lim=0,10"
+	"json":"-rubrics/?type=events&list&lim=0,10"
 }
 ```
 Формат данных на основе разбора файла с текcтом
