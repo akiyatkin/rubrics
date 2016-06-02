@@ -8,24 +8,26 @@
 	{Fitem:}
 		<tr>
 			<td>
-				<img src="/-imager/?src=-autoedit/icons/{ext}.png&w=16"></td>
-			<td><a href="/-rubrics/?id={id|name}&type={crumb.name}&load" title="{file}">{name}</a></td>
+				<img src="/-imager/?src=-autoedit/icons/{ext}.png&amp;w=16"></td>
+			<td><a href="/-rubrics/?id={id|name}&amp;type={crumb.name}&amp;load" title="{file}">{name}</a></td>
 			<td>{size}&nbsp;Mb</td>
 			<td>{~date(:j.m.Y,date)}</td>
 		</tr>
 {PAGES:}
-	<hr>
-	{data.list::Pitem}
+	<div>
+		{data.list::Pitem}
+	</div>
 	{Pitem:}
-		<div style="margin-bottom:30px">
+		<div style="margin-top:1em">
+			
+			<div style="font-size:1.4em;">{heading|name}</div>
 			{date:Pdate}
-			<h2 style="margin-top: 5px;">{heading|name}</h2>
 			{preview}
-			<a style="text-decoration: none; float: right;" href="/{:link}{name}">Читать полностью</a>
+			<a style="float: right;" href="/{:link}{name}">Читать полностью</a>
 			<div style="clear:both"></div>
 		</div>
 		<hr>
-	{Pdate:}<i style="color: #aaaaaa;">{:date}</i>
+	{Pdate:}<div style="text-align:right"><i style="color: #aaaaaa;">{:date}</i></div>
 	{date:}{~date(:j F Y,.)}
 	{j F Y:}j{:nbsp}F{:nbsp}Y{:nbsp}
 	{nbsp:}&\n\b\s\p;
