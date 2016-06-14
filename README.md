@@ -5,7 +5,7 @@
 ## Подключение
 ````json
 {
-	"external":"-rubrics/rubrics.layer.php"
+	"external":"-rubrics/rubrics.layer.json"
 }
 ```
 В текущем адресном пространстве будут обрабатываться все имена и согласно ```config.rubrics.main``` при наличии в папке ```~pages``` 
