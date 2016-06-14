@@ -1,5 +1,6 @@
 {
 	"pub":["list","404","main","link"],
+	"conf":"infrajs\\rubrics\\Rubrics",
 	"tester":"test.php",
 	"require":"rubrics.inc.php",
 	"404":"Статья на сайте не найдена.",
