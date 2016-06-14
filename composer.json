@@ -1,5 +1,6 @@
 {
 	"name": "infrajs/rubrics",
+	"homepage":"https://github.com/infrajs/rubrics",
 	"description": "Any rubrics - blog, pages, events",
 	"license": "GPL3",
 	"require": {
@@ -11,5 +12,8 @@
 		"infrajs/cache":"~1",
 		"infrajs/ans":"~1",
 		"infrajs/config":"~1"
+	},
+	"autoload": {
+		"psr-4": { "infrajs\\rubrics\\": "/" }
 	}
 }
