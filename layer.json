@@ -4,14 +4,14 @@
 		"tpl":"-rubrics/rubrics.tpl",
 		"tplroot":"404",
 		"parsedtpl":"{crumb.name}",
-		"autoedittpl":{"fast": "~{infra.config(:rubrics).main}/{crumb.name}"},
+		"autoedittpl":{"fast": "~{Config.get(:rubrics).main}/{crumb.name}"},
 		"showanimate":true,
 		"layers":{
-			"seojsontpl":"~{infra.config(:rubrics).main}/{crumb.name}.json",
+			"seojsontpl":"~{Config.get(:rubrics).main}/{crumb.name}.json",
 			"istpl":"{infrajs.names.rubrics.childs[crumb.name]??:yes}",
 			"tplcheck":true,
-			"autoedittpl":{"fast":"~{infra.config(:rubrics).main}/{crumb.name}"},
-			"tpltpl":"-rubrics/?type={infra.config(:rubrics).main}&id={crumb.name}&show"
+			"autoedittpl":{"fast":"~{Config.get(:rubrics).main}/{crumb.name}"},
+			"tpltpl":"-rubrics/?type={Config.get(:rubrics).main}&id={crumb.name}&show"
 		}
 	},
 	"childs":{
@@ -23,7 +23,7 @@
 			"autoedittpl":{"fast":"~{crumb.name}/"},
 			"divs":{
 				"rubricstitle":{
-					"tpl":["<h1>{infra.config(:rubrics).list[crumb.name].title}</h1>"],
+					"tpl":["<h1>{Config.get(:rubrics).list[crumb.name].title}</h1>"],
 					"tplroot":"root"
 				},
 				"rubricscontent":{
@@ -50,7 +50,7 @@
 			"autoedittpl":{"fast":"~{crumb.name}/"},
 			"divs":{
 				"rubricstitle":{
-					"tpl":["<h1>{infra.config(:rubrics).list[crumb.name].title}</h1>"],
+					"tpl":["<h1>{Config.get(:rubrics).list[crumb.name].title}</h1>"],
 					"tplroot":"root"
 				},
 				"rubricscontent":{
@@ -67,7 +67,7 @@
 			
 			"divs":{
 				"rubricstitle":{
-					"tpl":["<h1>{infra.config(:rubrics).list[crumb.name].title}</h1>"],
+					"tpl":["<h1>{Config.get(:rubrics).list[crumb.name].title}</h1>"],
 					"tplroot":"root"
 				},
 				"rubricscontent":{
@@ -81,7 +81,7 @@
 						"autoedittpl":{ "fast":"~{crumb.parent.name}/{crumb.name}" },
 						"divs":{
 							"rubricstitle":{
-								"tpl":["<a href='/{crumb.parent.name}'>{infra.config(:rubrics).list[crumb.parent.name].title}</a>"],
+								"tpl":["<a href='/{crumb.parent.name}'>{Config.get(:rubrics).list[crumb.parent.name].title}</a>"],
 								"tplroot":"root"
 							}
 						}
