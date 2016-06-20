@@ -50,6 +50,18 @@ class Rubrics {
 		}
 		return array();
 	}
+	public static function find($dir, $id) {
+		$files = rub_list($dir);
+		if (isset($files[$id])) {
+			$files[$id]['idfinded'] = true;//Найдено по id
+			return $dir.$files[$id]['file'];
+		}
+		foreach ($files as $d) {
+			if (mb_strtolower($d['name']) == mb_strtolower($id)) {
+				return $dir.$d['file'];
+			}
+		}
+	}
 	public static function info ($src) {
 		if (!Path::theme($src)) return array();
 		$rr = Load::srcInfo($src);
