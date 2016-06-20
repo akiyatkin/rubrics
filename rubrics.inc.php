@@ -92,6 +92,7 @@ function _rub_list($dir, $start, $count, $exts)
 			if (!is_file($dir.$file)) {
 				continue;
 			}
+			//depricated -> Rubrics::info();
 			$rr = Load::nameInfo(Path::toutf($file));
 			$ext = $rr['ext'];
 			if ($exts && !in_array($ext, $exts)) {

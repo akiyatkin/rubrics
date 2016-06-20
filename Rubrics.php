@@ -2,6 +2,8 @@
 namespace infrajs\rubrics;
 use infrajs\load\Load;
 use infrajs\path\Path;
+use infrajs\doc\Docx;
+use infrajs\doc\Mht;
 use infrajs\template\Template;
 
 Path::req('-rubrics/rubrics.inc.php');
@@ -47,6 +49,55 @@ class Rubrics {
 			}
 		}
 		return array();
+	}
+	public static function info ($src) {
+		if (!Path::theme($src)) return array();
+		$rr = Load::srcInfo($src);
+
+		$ext = $rr['ext'];
+		$size = filesize(Path::theme($src));
+		
+		if (in_array($ext, array('mht', 'tpl', 'html', 'txt','php'))) {
+			$rr = Mht::preview($src);
+		} elseif (in_array($ext, array('docx'))) {
+			$rr = Docx::preview($src);
+		}
+		$rr['size'] = round($size / 1000000, 2);//Mb
+		if (!empty($rr['links'])) {
+			$links = $rr['links'];
+			unset($rr['links']);
+
+			foreach ($links as $v) {
+				$r = preg_match('/http.*youtube\.com.*watch.*=([\w\-]+).*/', $v['href'], $match);
+				$r2 = preg_match('/http.{0,1}:\/\/youtu\.be\/([\w\-]+)/', $v['href'], $match);
+				if ($r) {
+					if (empty($rr['video'])) $rr['video'] = array();
+					$v['id'] = $match[1];
+					$rr['video'][] = $v;
+				} elseif ($r2) {
+					if (empty($rr['video'])) $rr['video'] = array();
+					$v['id'] = $match[1];
+					$rr['video'][] = $v;
+				} else {
+					if (empty($rr['links'])) $rr['links'] = array();
+					$rr['links'][] = $v;
+				}
+			}
+		}
+		$dir = Path::theme($rr['folder'].$rr['name'].'/');
+		if ($dir) {
+			$list = array();
+			array_map(function ($file) use (&$list, $src) {
+				if ($file{0} == '.') return;
+				//if (!is_file($dir.$file)) return;
+				$fd = Load::nameinfo($file);
+				if (!in_array($fd['ext'],['jpeg', 'jpg', 'png'])) return;
+				$list[] = Path::toutf($file);
+			}, scandir ($dir));
+			$rr['gallerydir'] = $rr['folder'].$rr['name'].'/';
+			$rr['gallery'] = $list;
+		}
+		return $rr;
 	}
 	public static function article ($src) {
 		$html = Load::loadTEXT('-doc/get.php?src='.$src);
