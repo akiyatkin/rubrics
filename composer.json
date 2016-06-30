@@ -11,7 +11,8 @@
 		"infrajs/nostore":"~1",
 		"infrajs/cache":"~1",
 		"infrajs/ans":"~1",
-		"infrajs/config":"~1"
+		"infrajs/config":"~1",
+		"dimsemenov/magnific-popup":"~1"
 	},
 	"autoload": {
 		"psr-4": { "infrajs\\rubrics\\": "/" }

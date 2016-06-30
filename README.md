@@ -1,7 +1,10 @@
 ***Не готово к использованию***
 
 # rubrics
-Расширение для Infrajs
+Расширение для infrajs/controller
+## Установка через composer
+Нужно отдельно подключить расширение dimsemenov/magnific-popup либо вручную либо через infrajs/collect
+
 ## Подключение
 ````json
 {

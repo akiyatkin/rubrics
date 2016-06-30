@@ -3,6 +3,7 @@ use infrajs\path\Path;
 use infrajs\config\Config;
 use infrajs\ans\Ans;
 use infrajs\view\View;
+use infrajs\rubrics\Rubrics;
 
 $conf = Config::get('rubrics');
 
@@ -47,7 +48,12 @@ if (!empty($_GET['id'])) {
 			echo $text;
 			return;
 		}
-
+	} elseif (isset($_GET['gallery'])) {
+		
+		$src = Rubrics::find($dir,$id);
+		$info = Rubrics::info($src);
+		$ans['info'] = $info;
+		return Ans::ret($ans);
 	} elseif (isset($_GET['load'])) {
 
 		if (!$res) {

@@ -1,24 +1,33 @@
 {
 	"name":"rubrics",
 	"child":{
-		"tpl":"-rubrics/rubrics.tpl",
-		"tplroot":"404",
-		"parsedtpl":"{crumb.name}",
-		"autoedittpl":{"fast": "~{Config.get(:rubrics).main}/{crumb.name}"},
-		"showanimate":true,
-		"layers":{
-			"seojsontpl":"~{Config.get(:rubrics).main}/{crumb.name}.json",
-			"istpl":"{infrajs.names.rubrics.childs[crumb.name]??:yes}",
-			"tplcheck":true,
-			"autoedittpl":{"fast":"~{Config.get(:rubrics).main}/{crumb.name}"},
-			"tpltpl":"-rubrics/?type={Config.get(:rubrics).main}&id={crumb.name}&show"
+		"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
+		"divs":{
+			"rubricscontent":{
+				"tpl":"-rubrics/rubrics.tpl",
+				"tplroot":"404",
+				"parsedtpl":"{crumb.name}",
+				"autoedittpl":{"fast": "~{Config.get(:rubrics).main}/{crumb.name}"},
+				"showanimate":true,
+				"layers":{
+					"seojsontpl":"~{Config.get(:rubrics).main}/{crumb.name}.json",
+					"istpl":"{infrajs.names.rubrics.childs[crumb.name]??:yes}",
+					"tplcheck":true,
+					"autoedittpl":{"fast":"~{Config.get(:rubrics).main}/{crumb.name}"},
+					"tpltpl":"-rubrics/?type={Config.get(:rubrics).main}&id={crumb.name}&show"
+				}
+			},
+			"rubricsgallery":{
+				"tpl":"-rubrics/gallery.tpl",
+				"jsontpl":"-rubrics/?type={Config.get(:rubrics).main}&gallery&id={crumb.name}"
+			}
 		}
 	},
 	"childs":{
 		"info":{
 			"config":{ },
 			"seojsontpl":"~{crumb.name}/{crumb.name}.json",
-			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div>"],
+			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
 			"tplroot":"root",
 			"autoedittpl":{"fast":"~{crumb.name}/"},
 			"divs":{
@@ -37,6 +46,10 @@
 						"divs":{
 							"rubricstitle":{
 								"tpl":[""]
+							},
+							"rubricsgallery":{
+								"tpl":"-rubrics/gallery.tpl",
+								"jsontpl":"-rubrics/?type={crumb.parent.name}&gallery&id={crumb.name}"
 							}
 						}
 					}
@@ -62,7 +75,7 @@
 		},
 		"list":{
 			"config":{ },
-			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div>"],
+			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
 
 			
 			"divs":{
@@ -83,6 +96,10 @@
 							"rubricstitle":{
 								"tpl":["<a href='/{crumb.parent.name}'>{Config.get(:rubrics).list[crumb.parent.name].title}</a>"],
 								"tplroot":"root"
+							},
+							"rubricsgallery":{
+								"tpl":"-rubrics/gallery.tpl",
+								"jsontpl":"-rubrics/?type={crumb.parent.name}&gallery&id={crumb.name}"
 							}
 						}
 					}
