@@ -50,8 +50,10 @@ class Rubrics {
 		}
 		return array();
 	}
-	public static function find($dir, $id) {
-		$files = rub_list($dir);
+	public static function find($dir, $id, $what = 'articles') {
+		if ($what == 'images') $exts = array('jpg','gif','png');
+		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		$files = rub_list($dir, 0, 0, $exts);
 		if (isset($files[$id])) {
 			$files[$id]['idfinded'] = true;//Найдено по id
 			return $dir.$files[$id]['file'];
@@ -61,6 +63,12 @@ class Rubrics {
 				return $dir.$d['file'];
 			}
 		}
+	}
+	public static function findArticals($dir, $id) {
+		return Rubrics::find($dir, $id, 'articles');
+	}
+	public static function findImages($dir, $id) {
+		return Rubrics::find($dir, $id, 'images');
 	}
 	public static function info ($src) {
 		if (!Path::theme($src)) return array();
