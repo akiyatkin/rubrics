@@ -15,7 +15,11 @@
 <a href="/{parent.crumb}">{parent.config.title}</a>
 <script>
 	domready(function(){
-		var div=$('.phorts-list');
+		var div = $('.phorts-list');
+		if (!div.magnificPopup) {
+			console.info('Требуется magnificPopup');
+			return;
+		}
 		div.find('a').magnificPopup({
 			type: 'image',
 			gallery:{
