@@ -3,13 +3,34 @@ use infrajs\path\Path;
 use infrajs\config\Config;
 use infrajs\ans\Ans;
 use infrajs\view\View;
+use infrajs\router\Router;
 use infrajs\rubrics\Rubrics;
+
+
+if (!is_file('vendor/autoload.php')) {
+	chdir('../../../');
+	require_once('vendor/autoload.php');
+	Router::init();
+}
+
+$ans = array();
+
+$src = Ans::GET('src');
+if ($src) {
+	if (!Path::isNest('~', $src)) return Ans::err($ans, 'Передан некорректный или небезопасный путь');
+	$id = Ans::GET('id');
+	$src = Rubrics::find($src, $id);
+	$text = Rubrics::article($src);
+	return Ans::html($text);
+}
+
+
+
+
 
 $conf = Config::get('rubrics');
 
 $type = Path::toutf($_GET['type']);
-
-$ans = array();
 /*
 	type два смысла.. type blog - имя рубрики и type list то как отображается всё
 */
