@@ -53,14 +53,22 @@ class Rubrics {
 	public static function find($dir, $id, $what = 'articles') {
 		if ($what == 'images') $exts = array('jpg','gif','png');
 		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		if ($what == 'image') $exts = array('jpg','gif','png');
+		if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		if ($what == 'dir') $exts = array();
+
 		$files = rub_list($dir, 0, 0, $exts);
 		if (isset($files[$id])) {
 			$files[$id]['idfinded'] = true;//Найдено по id
-			return $dir.$files[$id]['file'];
+			$src = $dir.$files[$id]['file'];
+			if ($what == 'dir') return $src.'/';
+			else return $src;
 		}
 		foreach ($files as $d) {
 			if (mb_strtolower($d['name']) == mb_strtolower($id)) {
-				return $dir.$d['file'];
+				$src = $dir.$d['file'];
+				if ($what == 'dir') return $src.'/';
+				else return $src;
 			}
 		}
 	}

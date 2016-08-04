@@ -39,7 +39,7 @@ if (empty($conf['list'][$type])) {
 }
 
 $dir = '~'.$type.'/';
-if ($conf['list'][$type]['type'] == 'info') {
+if (in_array($conf['list'][$type]['type'], array('list','info'))) {
 	$exts = array('docx','tpl','mht','html','php');
 } else {
 	$exts = array();
