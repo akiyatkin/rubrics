@@ -92,7 +92,7 @@ function _rub_list($dir, $start, $count, $exts)
 			//depricated -> Rubrics::info();
 			$rr = Load::nameInfo(Path::toutf($file));
 			$ext = $rr['ext'];
-			if (!in_array($ext, $exts)) continue;
+			if ($exts && !in_array($ext, $exts)) continue;
 			$size = filesize($dir.$file);
 			
 			$file = Path::toutf($file);
