@@ -21,13 +21,14 @@
 		<div style="margin-top:1em">
 			
 			<div style="font-size:1.4em;">{heading|name}</div>
-			{date:Pdate}
+			{data.type.onlyyear?date:Pdateyear?date:Pdate}
 			{preview}
 			<a style="float: right;" href="/{:link}{name}">Читать полностью</a>
 			<div style="clear:both"></div>
 		</div>
 		<hr>
 	{Pdate:}<div style="text-align:right"><i style="color: #aaaaaa;">{:date}</i></div>
+	{Pdateyear:}<div style="text-align:right"><i style="color: #aaaaaa;">{~date(:Y,.)}</i></div>
 	{date:}{~date(:j F Y,.)}
 	{j F Y:}j{:nbsp}F{:nbsp}Y{:nbsp}
 	{nbsp:}&\n\b\s\p;
