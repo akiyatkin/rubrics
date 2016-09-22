@@ -191,7 +191,7 @@ END;
 					$id = $match[2];
 					$type = $match[3];
 					$title = $match[4];
-				
+
 					$aa=$match[5];
 					$files[] = array('id' => $id, 'type' => $type);
 					$html = preg_replace($pattern, $a.'~'.$title.$aa, $html, 1);
@@ -210,8 +210,8 @@ END;
 			$pattern = '/(<a.*href="\/\-rubrics\/\?[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)~([^~<]*?)(<\/a>)/u';
 			$tpl = <<<END
 				<nobr>
-					<a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a> 
-					<img style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб</nobr>
+					<a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a> <img style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб
+				</nobr>
 END;
 			do {
 				preg_match($pattern, $html, $match);
