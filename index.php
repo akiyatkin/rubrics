@@ -65,7 +65,7 @@ if (!empty($_GET['id'])) {
 			return;
 		} else {
 			$src = $dir.$res['file'];
-			$text=rub_article($src);
+			$text = Rubrics::article($src);
 			echo $text;
 			return;
 		}
