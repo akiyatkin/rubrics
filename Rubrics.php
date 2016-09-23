@@ -210,7 +210,7 @@ END;
 		$pattern = '/(<a.*href="\/\-rubrics\/\?[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)~([^~<]*?)(<\/a>)/u';
 		$tpl = <<<END
 			<nobr>
-				<a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a> <img style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб
+				<a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a>&nbsp;<img style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб
 			</nobr>
 END;
 		do {
