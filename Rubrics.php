@@ -128,17 +128,20 @@ class Rubrics {
 		}
 		return $rr;
 	}
-	public static function parse($html) {
-		$info = Load::srcInfo($src);
-		if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
+	public static function parse($html, $soft = false) {
+		
+		if (!$soft) {
 			$html = preg_replace('/<table>/', '<table class="table table-striped">', $html);
+		}
+		if (!$soft) {
+			$html = preg_replace('/<img/', '<img class="img-thumbnail"', $html);
 		}
 
 		$html = preg_replace("/<\/a>/", "</a>\n", $html);
 
 		//youtube
 		$ptube = rub_ptube();
-		$pattern = '/(<a.*href="'.$ptube.'".*>)'.$ptube.'(<\/a>)/i';
+		$pattern = '/<a[^>]*>'.$ptube.'(<\/a>)/i';
 
 		$youtpl = <<<END
 		<img title="Видео" style="cursor:pointer" onclick="$(this).hide().after($(this).data('html'));" data-html='<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>' class="img-responsive" src="https://i.ytimg.com/vi/{3}/hqdefault.jpg">
@@ -158,9 +161,9 @@ END;
 
 		//youtube2
 		$ptube = rub_ptube2();
-		$pattern = '/(<a.*href="'.$ptube.'".*>)'.$ptube.'(<\/a>)/i';
+		$pattern = '/<a[^>]*>'.$ptube.'(<\/a>)/i';
 		$youtpl = <<<END
-		<img title="Видео" style="cursor:pointer" onclick="$(this).hide().after($(this).data('html'));" data-html='<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{3}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>' class="img-responsive" src="https://i.ytimg.com/vi/{3}/hqdefault.jpg">
+		<center><img title="Видео" style="cursor:pointer" onclick="$(this).hide().after($(this).data('html'));" data-html='<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="http://www.youtube.com/embed/{1}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>' class="img-responsive" src="https://i.ytimg.com/vi/{1}/hqdefault.jpg"></center>
 END;
 		do {
 			$match = array();
@@ -238,7 +241,11 @@ END;
 	public static function article ($src) {
 		return Cache::exec(array($src), __FILE__, function ($src) {
 			$html = Load::loadTEXT('-doc/get.php?src='.$src);
-			return Rubrics::parse($html);
+			$info = Load::srcInfo($src);
+			if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
+				$soft = true;
+			}
+			return Rubrics::parse($html, $soft);
 			
 		}, array($src));
 	}
