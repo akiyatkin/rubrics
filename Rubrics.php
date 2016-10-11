@@ -113,18 +113,20 @@ class Rubrics {
 				}
 			}
 		}
-		$dir = Path::theme($rr['folder'].$rr['name'].'/');
-		if ($dir) {
-			$list = array();
-			array_map(function ($file) use (&$list, $src) {
-				if ($file{0} == '.') return;
-				//if (!is_file($dir.$file)) return;
-				$fd = Load::nameinfo($file);
-				if (!in_array($fd['ext'],['jpeg', 'jpg', 'png'])) return;
-				$list[] = Path::toutf($file);
-			}, scandir ($dir));
-			$rr['gallerydir'] = $rr['folder'].$rr['name'].'/';
-			$rr['gallery'] = $list;
+		if (!empty($rr['name'])) {
+			$dir = Path::theme($rr['folder'].$rr['name'].'/');
+			if ($dir) {
+				$list = array();
+				array_map(function ($file) use (&$list, $src) {
+					if ($file{0} == '.') return;
+					//if (!is_file($dir.$file)) return;
+					$fd = Load::nameinfo($file);
+					if (!in_array($fd['ext'],['jpeg', 'jpg', 'png'])) return;
+					$list[] = Path::toutf($file);
+				}, scandir ($dir));
+				$rr['gallerydir'] = $rr['folder'].$rr['name'].'/';
+				$rr['gallery'] = $list;
+			}
 		}
 		return $rr;
 	}
