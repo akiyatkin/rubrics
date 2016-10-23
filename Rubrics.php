@@ -122,8 +122,12 @@ class Rubrics {
 					//if (!is_file($dir.$file)) return;
 					$fd = Load::nameinfo($file);
 					if (!in_array($fd['ext'],['jpeg', 'jpg', 'png'])) return;
-					$list[] = Path::toutf($file);
+					$list[] = Path::toutf($fd);
 				}, scandir ($dir));
+				Load::sort($list,'ascending');
+				foreach ($list as $k=>$fd) {
+					$list[$k] = Path::toutf($fd['file']);
+				}
 				$rr['gallerydir'] = $rr['folder'].$rr['name'].'/';
 				$rr['gallery'] = $list;
 			}
