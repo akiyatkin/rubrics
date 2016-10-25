@@ -1,3 +1,10 @@
+{TITLE:}
+	<span class="label label-default pull-right">{~date(:j F Y,data.info.date)}</span>
+	<ol class="breadcrumb">
+		<li><a href="/">Главная</a></li>
+		<li><a href="/{crumb.parent.name}">{~conf.rubrics.list[crumb.parent.name].title}</a></li>
+		<li class="active">{data.info.heading}</li>
+	</ol>
 {404:}
 	<h1>{crumb.name}</h1><p>{infra.config(:rubrics).404}</p><p><a href='/'>{infra.config(:rubrics).link}</a></p>
 {comma:},

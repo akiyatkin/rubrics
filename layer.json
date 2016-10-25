@@ -94,8 +94,9 @@
 						"autoedittpl":{ "fast":"~{crumb.parent.name}/{crumb.name}" },
 						"divs":{
 							"rubricstitle":{
-								"tpl":["<a href='/{crumb.parent.name}'>{Config.get(:rubrics).list[crumb.parent.name].title}</a>"],
-								"tplroot":"root"
+								"tpl":"-rubrics/rubrics.tpl",
+								"tplroot":"TITLE",
+								"jsontpl":"-rubrics/?type={crumb.parent.name}&gallery&id={crumb.name}"
 							},
 							"rubricsgallery":{
 								"tpl":"-rubrics/gallery.tpl",
