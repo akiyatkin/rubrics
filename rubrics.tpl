@@ -20,13 +20,18 @@
 			<td>{size}&nbsp;Mb</td>
 			<td>{~date(:j.m.Y,date)}</td>
 		</tr>
+{PAGESTITLE:}
+	<ol class="breadcrumb">
+		<li><a href="/">Главная</a></li>
+		<li class="active">{~conf.rubrics.list[crumb.name].title}</li>
+	</ol>
+	<h1>{~conf.rubrics.list[crumb.name].title}</h1>
 {PAGES:}
 	<div>
 		{data.list::Pitem}
 	</div>
 	{Pitem:}
 		<div style="margin-top:1em">
-			
 			<div style="font-size:1.4em;">{heading|name}</div>
 			{data.type.onlyyear?date:Pdateyear?date:Pdate}
 			{preview}

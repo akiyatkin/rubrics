@@ -32,8 +32,8 @@
 			"autoedittpl":{"fast":"~{crumb.name}/"},
 			"divs":{
 				"rubricstitle":{
-					"tpl":["<h1>{Config.get(:rubrics).list[crumb.name].title}</h1>"],
-					"tplroot":"root"
+					"tpl":"-rubrics/rubrics.tpl",
+					"tplroot":"PAGESTITLE"
 				},
 				"rubricscontent":{
 					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
@@ -77,12 +77,10 @@
 		"list":{
 			"config":{ },
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
-
-			
 			"divs":{
 				"rubricstitle":{
-					"tpl":["<h1>{Config.get(:rubrics).list[crumb.name].title}</h1>"],
-					"tplroot":"root"
+					"tpl":"-rubrics/rubrics.tpl",
+					"tplroot":"PAGESTITLE"
 				},
 				"rubricscontent":{
 					"tpl":"-rubrics/rubrics.tpl",
