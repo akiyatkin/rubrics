@@ -64,7 +64,9 @@
 
 ## Имя файла
 Имя файла интерпретируется согласно правилам [infrajs/load](https://github.com/infrajs/load)
-```yymmdd name@id.ext```
+```
+	yymmdd name@id.ext
+```
 
 ## API
 
@@ -87,4 +89,15 @@ $html = Rubrics::article('~events/'.$res['file']); //Содержимое фай
     }
 }
 
+```
+
+## SEO
+Для формирования seo-мета тегов используется расширение [infrajs/layer-seojson](https://github.com/infrajs/layer-seojson).
+SEO главной страницы ожидается в ~pages/index.json, SEO страниц совпадает с именем файла с содержаием, например ~pages/about.json. В других разделах аналогично. 
+Файл ~pages/page.json используется для seo страницы по умолчанию и нужно его везде подключать. Например
+```json
+{
+	"title":"Акция подари скидку другу. Протезирование зубов в Тольятти",
+	"external":"~pages/page.json"
+}
 ```
