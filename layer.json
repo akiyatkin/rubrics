@@ -26,7 +26,7 @@
 	"childs":{
 		"info":{
 			"config":{ },
-			"seojsontpl":"~{crumb.name}/{crumb.name}.json",
+			"seojsontpl":"~{crumb.name}/index.json",
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
 			"tplroot":"root",
 			"autoedittpl":{"fast":"~{crumb.name}/"},
@@ -77,6 +77,7 @@
 		"list":{
 			"config":{ },
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
+			"seojsontpl":"~{crumb.name}/index.json",
 			"divs":{
 				"rubricstitle":{
 					"tpl":"-rubrics/rubrics.tpl",
