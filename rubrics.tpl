@@ -44,5 +44,5 @@
 	{date:}{~date(:j F Y,.)}
 	{j F Y:}j{:nbsp}F{:nbsp}Y{:nbsp}
 	{nbsp:}&\n\b\s\p;
-{link:}{infra.config(:rubrics).main=crumb.name??:cn}
-	{cn:}{crumb.name|link}/
+{link:}{~conf.rubrics.main=crumb.name??:cn}
+	{cn:}{link|crumb.name}/
