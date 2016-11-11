@@ -203,21 +203,18 @@ END;
 				$html = preg_replace($pattern, $a.'~'.$title.$aa, $html, 1);
 			}
 		} while (sizeof($match) > 1);
-		
+
 		$filesd = array();
 		foreach ($files as $f) {
 			$filed = rub_get($f['type'], $f['id'], array());
 			if ($filed) {
 				$filed['type']=$f['type'];
-				$filesd[$id] = $filed;
+				$filesd[$f['id']] = $filed;
 			}
 		}
-		
 		$pattern = '/(<a.*href="\/\-rubrics\/\?[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)~([^~<]*?)(<\/a>)/u';
 		$tpl = <<<END
-			<nobr>
-				<a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a>&nbsp;<img style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб
-			</nobr>
+			<nobr><a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a>&nbsp;<img style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб</nobr>
 END;
 		do {
 			preg_match($pattern, $html, $match);
@@ -253,6 +250,6 @@ END;
 			}
 			return Rubrics::parse($html, $soft);
 			
-		}, array($src));
+		}, array($src), isset($_GET['re']));
 	}
 }
