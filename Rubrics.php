@@ -150,7 +150,7 @@ class Rubrics {
 		$pattern = '/<a[^>]*>'.$ptube.'(<\/a>)/i';
 
 		$youtpl = <<<END
-		<img title="Видео" style="cursor:pointer" onclick="$(this).hide().after($(this).data('html'));" data-html='<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/{3}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>' class="img-responsive" src="https://i.ytimg.com/vi/{3}/hqdefault.jpg">
+		<center><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/{3}" frameborder="0" allowfullscreen></iframe></div></center>
 END;
 
 		do {
@@ -169,7 +169,7 @@ END;
 		$ptube = rub_ptube2();
 		$pattern = '/<a[^>]*>'.$ptube.'(<\/a>)/i';
 		$youtpl = <<<END
-		<center><img title="Видео" style="cursor:pointer" onclick="$(this).hide().after($(this).data('html'));" data-html='<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/{1}?autoplay=1" frameborder="0" allowfullscreen></iframe></div>' class="img-responsive" src="https://i.ytimg.com/vi/{1}/hqdefault.jpg"></center>
+		<center><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/{1}" frameborder="0" allowfullscreen></iframe></div></center>
 END;
 		do {
 			$match = array();
