@@ -140,7 +140,7 @@ class Rubrics {
 			$html = preg_replace('/<table>/', '<table class="table table-striped">', $html);
 		}
 		if (!$soft) {
-			$html = preg_replace('/<img/', '<img class="img-thumbnail"', $html);
+			$html = preg_replace('/<img/', '<img alt="" class="img-thumbnail"', $html);
 		}
 
 		$html = preg_replace("/<\/a>/", "</a>\n", $html);
@@ -214,7 +214,7 @@ END;
 		}
 		$pattern = '/(<a.*href="\/\-rubrics\/\?[^"]*id=(\w+)&type=(\w+)&[^"]*load".*>)~([^~<]*?)(<\/a>)/u';
 		$tpl = <<<END
-			<nobr><a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a>&nbsp;<img style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб</nobr>
+			<nobr><a href="/-rubrics/?id={id}&type={type}&load" title="{name}">{title}</a>&nbsp;<img alt="" style="margin-right:3px;" src="/-imager/?src=-autoedit/icons/{ext}.png&w=16" title="{name}"> {size} Мб</nobr>
 END;
 		do {
 			preg_match($pattern, $html, $match);
@@ -238,7 +238,6 @@ END;
 		} while (sizeof($match) > 1);
 		$html = preg_replace("/<\/a>\n/", '</a>', $html);
 
-		return $html;
 		return $html;
 	}
 	public static function article ($src) {
