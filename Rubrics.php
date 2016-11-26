@@ -247,6 +247,8 @@ END;
 			$info = Load::srcInfo($src);
 			if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
 				$soft = true;
+			} else {
+				$soft = false;
 			}
 			return Rubrics::parse($html, $soft);
 			
