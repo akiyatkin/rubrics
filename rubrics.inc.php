@@ -11,7 +11,7 @@ function rub_search($dir, $str, $exts)
 {
 	$files = rub_list($dir, 0, 0, $exts);
 
-	if (@$files[$str]) {
+	if (!empty($files[$str])) {
 		$files[$str]['idfinded'] = true;//Найдено по id
 			   return $files[$str];
 	}
@@ -106,7 +106,7 @@ function _rub_list($dir, $start, $count, $exts)
 			}
 
 			$rr['size'] = round($size / 1000000, 2);
-			$links = @$rr['links'];
+			$links = isset($rr['links'])? $rr['links']: null;
 			if ($links) {
 				unset($rr['links']);
 				$ptube = rub_ptube();
@@ -116,21 +116,15 @@ function _rub_list($dir, $start, $count, $exts)
 					$r = preg_match('/'.$ptube.'/', $v['href'], $match);
 					$r2 = preg_match('/'.$ptube2.'/', $v['href'], $match);
 					if ($r) {
-						if (!@$rr['video']) {
-							$rr['video'] = array();
-						}
+						if (empty($rr['video'])) $rr['video'] = array();
 						$v['id'] = $match[1];
 						$rr['video'][] = $v;
 					} elseif ($r2) {
-						if (!@$rr['video']) {
-							$rr['video'] = array();
-						}
+						if (empty($rr['video'])) $rr['video'] = array();
 						$v['id'] = $match[1];
 						$rr['video'][] = $v;
 					} else {
-						if (!@$rr['links']) {
-							$rr['links'] = array();
-						}
+						if (empty($rr['links'])) $rr['links'] = array();
 						$rr['links'][] = $v;
 					}
 				}
@@ -138,9 +132,8 @@ function _rub_list($dir, $start, $count, $exts)
 			$files[] = $rr;
 		}
 		usort($files, function ($b, $a) {
-			$a = @$a['date'];
-			$b = @$b['date'];
-
+			$a = isset($a['date']) ? $a['date'] : null;
+			$b = isset($b['date']) ? $b['date'] : null;
 			return $a < $b ? +1 : -1;
 		});
 		$maxid = 0;
