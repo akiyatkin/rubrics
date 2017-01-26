@@ -28,9 +28,9 @@ foreach ($list as $rub => $param) {
 	if (!$param) {
 		continue;
 	}
-	if (!$types[$param['type']]) {
-		continue;
-	}
+	
+	if (empty($types[$param['type']])) continue;
+	
 	$layer['childs'][$rub] = $types[$param['type']];
 	if ($conf['main'] == $rub) {
 		$layer['childs'][$rub]['config']['main'] = true;
