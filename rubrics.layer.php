@@ -10,7 +10,7 @@ use infrajs\nostore\Nostore;
  * Формирует созданные в конфиге план рубрик, в виде слоёв
  * Кэшируется как статика
  **/
-Nostore::pubStat();
+//Nostore::pubStat(); В режиме Router::$main главная страница тоже становится статикой
 
 $conf = Config::get('rubrics');
 
