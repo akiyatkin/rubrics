@@ -176,7 +176,6 @@ END;
 			preg_match($pattern, $html, $match);
 			if (sizeof($match) > 1) {
 				$a = $match[1];
-				$aa = $match[4];
 				$files[] = $match[2];
 				$youhtml = Template::parse(array($youtpl), $match);
 				$html = preg_replace($pattern, $youhtml, $html, 1);
