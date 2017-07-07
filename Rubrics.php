@@ -98,7 +98,7 @@ class Rubrics {
 
 			foreach ($links as $v) {
 				$r = preg_match('/http.*youtube\.com.*watch.*=([\w\-]+).*/', $v['href'], $match);
-				$r2 = preg_match('/http.{0,1}:\/\/youtu\.be\/([\w\-]+)/', $v['href'], $match);
+				if(!$r) $r2 = preg_match('/http.{0,1}:\/\/youtu\.be\/([\w\-]+)/', $v['href'], $match);
 				if ($r) {
 					if (empty($rr['video'])) $rr['video'] = array();
 					$v['id'] = $match[1];
@@ -150,16 +150,14 @@ class Rubrics {
 		$pattern = '/<a[^>]*>'.$ptube.'(<\/a>)/i';
 
 		$youtpl = <<<END
-		<center><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/{3}" frameborder="0" allowfullscreen></iframe></div></center>
+		<center><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" width="640" height="480" src="https://www.youtube.com/embed/{1}" frameborder="0" allowfullscreen></iframe></div></center>
 END;
 
 		do {
 			$match = array();
 			preg_match($pattern, $html, $match);
 			if (sizeof($match) > 1) {
-				$a = $match[1];
-				$aa = $match[4];
-				$files[] = $match[2];
+				$files[] = $match[1];
 				$youhtml = Template::parse(array($youtpl), $match);
 				$html = preg_replace($pattern, $youhtml, $html, 1);
 			}
