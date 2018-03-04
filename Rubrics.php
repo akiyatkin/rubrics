@@ -4,7 +4,8 @@ use infrajs\load\Load;
 use infrajs\path\Path;
 use infrajs\doc\Docx;
 use infrajs\doc\Mht;
-use infrajs\cache\Cache;
+use akiyatkin\boo\Cache;
+use infrajs\cache\Cache as OldCache;
 use infrajs\template\Template;
 
 Path::req('-rubrics/rubrics.inc.php');
@@ -238,7 +239,7 @@ END;
 		return $html;
 	}
 	public static function article ($src) {
-		return Cache::exec(array($src), __FILE__, function ($src) {
+		return Cache::exec('Подготовленные статьи', function ($src) {
 			$html = Load::loadTEXT('-doc/get.php?src='.$src);
 			$info = Load::srcInfo($src);
 			if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
@@ -248,6 +249,6 @@ END;
 			}
 			return Rubrics::parse($html, $soft);
 			
-		}, array($src), isset($_GET['re']));
+		}, array($src), ['akiyatkin\boo\Cache','getModifiedTime'], [$src]);
 	}
 }

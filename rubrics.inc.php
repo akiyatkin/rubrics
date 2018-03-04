@@ -2,7 +2,7 @@
 use infrajs\path\Path;
 use infrajs\load\Load;
 use infrajs\template\Template;
-use infrajs\cache\Cache;
+use akiyatkin\boo\Cache;
 use infrajs\doc\Docx;
 use infrajs\doc\Mht;
 use infrajs\rubrics\Rubrics;
@@ -55,11 +55,11 @@ function rub_get($type, $id, $exts)
 function rub_list($dir, $start = 0, $count = 0, $exts = array())
 {
 
-	$files = Cache::exec(array($dir), 'rub_list', function ($dir, $start, $count, $exts) {
+	$files = Cache::exec('Содержимое рубрик', function ($dir, $start, $count, $exts) {
 		$dir = Path::theme($dir);
 
 		return _rub_list($dir, $start, $count, $exts);
-	}, array($dir, $start, $count, $exts),isset($_GET['re']));
+	}, array($dir, $start, $count, $exts), ['akiyatkin\boo\Cache','getModifiedTime'], array($dir));
 
 	return $files;
 }
