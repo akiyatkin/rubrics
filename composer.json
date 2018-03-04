@@ -2,7 +2,6 @@
 	"name": "infrajs/rubrics",
 	"homepage":"https://github.com/infrajs/rubrics",
 	"description": "Any rubrics - blog, pages, events",
-	"license": "GPL3",
 	"require": {
 		"infrajs/doc": "~1",
 		"infrajs/template":"~1",
