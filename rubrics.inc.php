@@ -52,30 +52,20 @@ function rub_get($type, $id, $exts)
 
 	return $res;
 }
-function rub_list($dir, $start = 0, $count = 0, $exts = array())
+function rub_list($src, $start = 0, $count = 0, $exts = array())
 {
 
-	$files = Cache::exec('Содержимое рубрик', function ($dir, $start, $count, $exts) {
-		$dir = Path::theme($dir);
-
-		return _rub_list($dir, $start, $count, $exts);
-	}, array($dir, $start, $count, $exts), ['akiyatkin\boo\Cache','getModifiedTime'], array($dir));
+	$files = Cache::exec('Содержимое рубрик', function ($src, $start, $count, $exts) {
+		return _rub_list($src, $start, $count, $exts);
+	}, array($src, $start, $count, $exts), ['akiyatkin\boo\Cache','getModifiedTime'], array($src));
 
 	return $files;
 }
-function _rub_list($dir, $start, $count, $exts)
+function _rub_list($src, $start, $count, $exts)
 {
-	if (!$dir) {
-		return array();
-	}
-	$dir = Path::toutf($dir);
-	$dir = Path::theme($dir);
-
 	$res = array();
-
-	if (!$dir || !is_dir($dir)) {
-		return $res;
-	}
+	$dir = Path::theme($src);
+	
 	if (is_dir($dir) && $dh = opendir($dir)) {
 		$files = array();
 	
@@ -99,10 +89,10 @@ function _rub_list($dir, $start, $count, $exts)
 			
 
 			if (in_array($ext, array('mht', 'tpl', 'html', 'txt','php'))) {
-				$rr = Mht::preview(Path::toutf($dir).$file);
+				$rr = Mht::preview($src.$file);
 				
 			} elseif (in_array($ext, array('docx'))) {
-				$rr = Docx::preview(Path::toutf($dir).$file);
+				$rr = Docx::preview($src.$file);
 			}
 
 			$rr['size'] = round($size / 1000000, 2);
