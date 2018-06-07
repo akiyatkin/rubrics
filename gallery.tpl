@@ -39,4 +39,4 @@
 		}
 	});
 </script>
-{bigimg:}<a id="img-{.}" href="/{...gallerydir}{.}"><img style="width:20%" src="/-imager/?w=400&h=300&crop=1&src={~encode(...gallerydir)}{~encode(.)}&top=1"></a>
+{bigimg:}<a id="img-{name}" href="/-imager/?src={...gallerydir}{~encode(name)}"><img style="width:20%" src="/-imager/?w=400&h=300&crop=1&src={~encode(...gallerydir)}{~encode(name)}&top=1"></a>

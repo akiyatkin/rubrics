@@ -121,14 +121,15 @@ class Rubrics {
 				array_map(function ($file) use (&$list, $src) {
 					if ($file{0} == '.') return;
 					//if (!is_file($dir.$file)) return;
-					$fd = Load::nameinfo($file);
+					$fd = Load::nameinfo(Path::toutf($file));
 					if (!in_array($fd['ext'],['jpeg', 'jpg', 'png'])) return;
-					$list[] = Path::toutf($fd);
+					$list[] = $fd;
 				}, scandir ($dir));
 				Load::sort($list,'ascending');
-				foreach ($list as $k=>$fd) {
-					$list[$k] = Path::toutf($fd['file']);
-				}
+
+				//foreach ($list as $k=>$fd) {
+				//	$list[$k] = $fd['file'];
+				//}
 				$rr['gallerydir'] = $rr['folder'].$rr['name'].'/';
 				$rr['gallery'] = $list;
 			}
