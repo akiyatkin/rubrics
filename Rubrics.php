@@ -57,6 +57,8 @@ class Rubrics {
 		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
 		if ($what == 'image') $exts = array('jpg','gif','png');
 		if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		if ($what == 'html') $exts = array('tpl', 'html');
+		if ($what == 'doc') $exts = array('docx', 'mht');
 		if ($what == 'dir') $exts = array();
 
 		$files = rub_list($dir, 0, 0, $exts);
