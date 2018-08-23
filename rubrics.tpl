@@ -1,12 +1,13 @@
 {TITLE:}
-	<span class="label label-default pull-right">{~date(:j F Y,data.info.date)}</span>
+	
 	<ol class="breadcrumb">
-		<li><a href="/">Главная</a></li>
-		<li><a href="/{crumb.parent.name}">{~conf.rubrics.list[crumb.parent.name].title}</a></li>
-		<li class="active">{data.info.heading}</li>
+		<li class="breadcrumb-item"><a href="/">Главная</a></li>
+		<li class="breadcrumb-item"><a href="/{crumb.parent.name}">{~conf.rubrics.list[crumb.parent.name].title}</a></li>
+		<li class="breadcrumb-item active">{data.info.heading}</li>
 	</ol>
+	<div class="pull-right badge badge-secondary">{~date(:j F Y,data.info.date)}</div>
 {404:}
-	<h1>{crumb.name}</h1><p>{infra.config(:rubrics).404}</p><p><a href='/'>{infra.config(:rubrics).link}</a></p>
+	<h1>{crumb.name}</h1><p>{Config.get(:rubrics).404}</p><p><a href='/'>{Config.get(:rubrics).link}</a></p>
 {comma:},
 {FILES:}
 	<table class="table table-striped" style="width:auto">
@@ -22,8 +23,8 @@
 		</tr>
 {PAGESTITLE:}
 	<ol class="breadcrumb">
-		<li><a href="/">Главная</a></li>
-		<li class="active">{~conf.rubrics.list[crumb.name].title}</li>
+		<li class="breadcrumb-item"><a href="/">Главная</a></li>
+		<li class="active breadcrumb-item">{~conf.rubrics.list[crumb.name].title}</li>
 	</ol>
 	<h1>{~conf.rubrics.list[crumb.name].title}</h1>
 {PAGES:}
@@ -34,7 +35,9 @@
 		<div style="margin-top:1em">
 			<div style="font-size:1.4em;">{heading|name}</div>
 			{data.type.onlyyear?date:Pdateyear?date:Pdate}
+			{images.0:imgt}
 			{preview}
+			{images.0:imgb}
 			<a style="float: right;" href="/{:link}{name}">Читать полностью</a>
 			<div style="clear:both"></div>
 		</div>
@@ -46,3 +49,11 @@
 	{nbsp:}&\n\b\s\p;
 {link:}{~conf.rubrics.main=crumb.name??:cn}
 	{cn:}{link|crumb.name}/
+{imgt:}
+<a class="d-none d-md-block" href="/{:link}{name}">
+	<img class="img-thumbnail ml-2 mb-2 pull-right" src="/-imager/?src={src}&w=300">
+</a>
+{imgb:}
+<a class="d-block d-md-none" href="/{:link}{name}">
+	<img class="img-thumbnail mb-2 img-fluid" src="/-imager/?src={src}&w=800&h=400&crop=1">
+</a>
