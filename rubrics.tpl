@@ -24,7 +24,7 @@
 {PAGESTITLE:}
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="/">Главная</a></li>
-		<li class="active breadcrumb-item">{~conf.rubrics.list[crumb.name].title}</li>
+		<li class="active breadcrumb-item">{~conf.rubrics.list[crumb.name].title|data.heading}</li>
 	</ol>
 	<h1>{~conf.rubrics.list[crumb.name].title}</h1>
 {PAGES:}

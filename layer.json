@@ -3,6 +3,11 @@
 	"child":{
 		"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
 		"divs":{
+			"rubricstitle":{
+				"tpl":"-rubrics/rubrics.tpl",
+				"tplroot":"PAGESTITLE",
+				"jsontpl":"-rubrics/?type={Config.get(:rubrics).main}&id={crumb.name}"
+			},
 			"rubricscontent":{
 				"tpl":"-rubrics/rubrics.tpl",
 				"tplroot":"404",
