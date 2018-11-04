@@ -51,7 +51,7 @@
 	{cn:}{link|crumb.name}/
 {imgt:}
 <a class="d-none d-md-block" href="/{:link}{name}">
-	<img class="img-thumbnail ml-2 mb-2 pull-right" src="/-imager/?src={src}&w=300">
+	<img class="img-thumbnail ml-2 mb-2 float-right" src="/-imager/?src={src}&w=360">
 </a>
 {imgb:}
 <a class="d-block d-md-none" href="/{:link}{name}">
