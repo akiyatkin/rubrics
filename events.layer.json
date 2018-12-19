@@ -2,5 +2,5 @@
 	"tpl":"-rubrics/rubrics.tpl",
 	"tplroot":"PAGES",
 	"link":"events",
-	"jsontpl":"-rubrics/?list&type=events&lim=0,{config.count|2}"
+	"jsontpl":"-rubrics/?list&type=events&lim=0,{config.count|:3}"
 }
