@@ -3,6 +3,7 @@ use infrajs\path\Path;
 use infrajs\config\Config;
 use infrajs\ans\Ans;
 use infrajs\view\View;
+use infrajs\load\Load;
 use infrajs\router\Router;
 use infrajs\rubrics\Rubrics;
 
@@ -44,7 +45,22 @@ if (!empty($_GET['id'])) {
 	$id = Path::toutf($_GET['id']);
 
 	$res = rub_search($dir, $id, $exts);
+
 	
+	if ($res && $id != $res['name']) { //Обращаться к страницам можно по id
+		$r = Load::isphp();
+		if ($r) {
+			if ($type == $conf['main']) {
+				header('Location: /'.$res['name']);
+				exit;
+			} else {
+				//header('Location: /'.$type.'/'.$res['name']);
+			}
+					
+		}
+	}
+	
+
 	if (isset($_GET['image'])) {
 		if ($res['images']) {
 			$data = file_get_contents(Path::tofs($res['images'][0]['src']));
