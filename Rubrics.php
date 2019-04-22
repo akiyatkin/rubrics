@@ -227,7 +227,7 @@ END;
 				$type = $match[3];
 				$id = $match[2];
 
-				if ($filesd[$id]) {
+				if (isset($filesd[$id])) {
 					$d = $filesd[$id];
 					$d['title'] = $title;
 					$t = Template::parse(array($tpl), $d);

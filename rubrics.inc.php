@@ -45,9 +45,11 @@ function rub_get($type, $id, $exts)
 {
 	if(!$type)return;
 	$files = rub_list('~'.$type.'/', 0, 0, $exts);
-	$res = $files[$id];
-	if (!$res) {
+	
+	if (empty($files[$id])) {
 		$res = array();
+	} else {
+		$res = $files[$id];
 	}
 
 	return $res;
