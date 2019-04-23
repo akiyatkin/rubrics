@@ -53,9 +53,10 @@ class Rubrics {
 		return array();
 	}
 	public static function find($dir, $id, $what = 'articles') {
-		if ($what == 'images') $exts = array('jpg','gif','png');
+		if (is_array($what)) $exts = $what;
+		if ($what == 'images') $exts = array('jpg','gif','png','jpeg');
 		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
-		if ($what == 'image') $exts = array('jpg','gif','png');
+		if ($what == 'image') $exts = array('jpg','gif','png','jpeg');
 		if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
 		if ($what == 'html') $exts = array('tpl', 'html');
 		if ($what == 'doc') $exts = array('docx', 'mht');
