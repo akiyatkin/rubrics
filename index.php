@@ -15,8 +15,15 @@ if ($src) {
 	if (!Path::isNest('~', $src)) return Ans::err($ans, 'Передан некорректный или небезопасный путь');
 	$id = Ans::GET('id');
 	$src = Rubrics::find($src, $id);
-	$text = Rubrics::article($src);
-	return Ans::html($text);
+
+	if (isset($_GET['gallery'])) {
+		$info = Rubrics::info($src);
+		$ans['info'] = $info;
+		return Ans::ret($ans);
+	} else {
+		$text = Rubrics::article($src);	
+		return Ans::html($text);
+	}
 }
 
 
