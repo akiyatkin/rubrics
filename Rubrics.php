@@ -142,7 +142,7 @@ class Rubrics {
 	public static function parse($html, $soft = false) {
 		
 		if (!$soft) {
-			$html = preg_replace('/<table>/', '<table class="table table-striped">', $html);
+			$html = preg_replace('/<table>/', '<table class="table table-sm table-striped">', $html);
 		}
 		if (!$soft) {
 			$html = preg_replace('/<img/', '<img alt="" class="img-thumbnail"', $html);
