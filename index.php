@@ -14,13 +14,22 @@ $src = Ans::GET('src');
 if ($src) {
 	if (!Path::isNest('~', $src)) return Ans::err($ans, 'Передан некорректный или небезопасный путь');
 	$id = Ans::GET('id');
-	$src = Rubrics::find($src, $id);
+	$ext = Ans::GET('ext','string','article');
+	
+	
 
 	if (isset($_GET['gallery'])) {
+		$src = Rubrics::find($src, $id);
 		$info = Rubrics::info($src);
 		$ans['info'] = $info;
 		return Ans::ret($ans);
+	} else if (isset($_GET['find'])) {
+		$src = Rubrics::find($src, $id, $ext);
+		if (!$src) return Ans::err($ans,'Файл не найден');
+		$ans['src'] = $src;
+		return Ans::ret($ans);
 	} else {
+		$src = Rubrics::find($src, $id);
 		$text = Rubrics::article($src);	
 		return Ans::html($text);
 	}
@@ -32,7 +41,7 @@ if ($src) {
 
 $conf = Config::get('rubrics');
 
-$type = Path::toutf($_GET['type']);
+$type = Ans::GET('type');
 /*
 	type два смысла.. type blog - имя рубрики и type list то как отображается всё
 */
