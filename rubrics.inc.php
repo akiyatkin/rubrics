@@ -4,6 +4,7 @@ use infrajs\load\Load;
 use infrajs\template\Template;
 use akiyatkin\boo\Cache;
 use infrajs\doc\Docx;
+use infrajs\config\Config;
 use infrajs\doc\Mht;
 use infrajs\rubrics\Rubrics;
 
@@ -40,11 +41,20 @@ function rub_article($src)
 {
 	return Rubrics::article($src);
 }
-
+function rub_getdir($type) {
+	$conf = Config::get('rubrics');
+	if (isset($conf['list'][$type]['dir'])) {
+		$dir = $conf['list'][$type]['dir'];
+	} else {
+		$dir = '~'.$type.'/';
+	}
+	return $dir;
+}
 function rub_get($type, $id, $exts)
 {
-	if(!$type)return;
-	$files = rub_list('~'.$type.'/', 0, 0, $exts);
+	if (!$type) return;
+	$dir = rub_getdir($type);
+	$files = rub_list($dir, 0, 0, $exts);
 	
 	if (empty($files[$id])) {
 		$res = array();

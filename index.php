@@ -49,8 +49,10 @@ if (empty($conf['list'][$type])) {
 	return Ans::err($ans, 'Undefined type '.$type);
 }
 
-$dir = '~'.$type.'/';
+
 $ans['type'] = $conf['list'][$type];
+$dir = rub_getdir($type);
+
 if (in_array($conf['list'][$type]['type'], array('list','info'))) {
 	$exts = array('docx','tpl','mht','html','php');
 } else {

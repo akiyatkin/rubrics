@@ -15,7 +15,8 @@
 	"list":{
 		"pages":{
 			"title":"Информация",
-			"type":"info"
+			"type":"info",
+			"dir":"~pages/"
 		},
 		"blog":{
 			"title":"Блог",
