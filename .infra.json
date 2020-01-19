@@ -29,10 +29,6 @@
 		"events":{
 			"title":"События",
 			"type":"list"
-		},
-		"texts":{
-			"title":"Информационные блоки",
-			"type":"info"
 		}
 	}
 }
