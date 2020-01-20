@@ -52,6 +52,19 @@ class Rubrics {
 		}
 		return array();
 	}
+	public static function list($dir, $what = 'articles') {
+		if (is_array($what)) $exts = $what;
+		if ($what == 'images') $exts = array('jpg','gif','png','jpeg');
+		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		if ($what == 'image') $exts = array('jpg','gif','png','jpeg');
+		if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		if ($what == 'html') $exts = array('tpl', 'html');
+		if ($what == 'doc') $exts = array('docx', 'mht');
+		if ($what == 'dir') $exts = array();
+
+		$files = rub_list($dir, 0, 0, $exts);
+		return $files;
+	}
 	public static function find($dir, $id, $what = 'articles') {
 		if (is_array($what)) $exts = $what;
 		if ($what == 'images') $exts = array('jpg','gif','png','jpeg');
