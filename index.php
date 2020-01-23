@@ -11,7 +11,8 @@ use infrajs\rubrics\Rubrics;
 $ans = array();
 
 $src = Ans::GET('src');
-$removeh1 = isset($_GET['removeh1']);
+
+
 if ($src) {
 	if (!Path::isNest('~', $src)) return Ans::err($ans, 'Передан некорректный или небезопасный путь');
 	$id = Ans::GET('id');
@@ -97,9 +98,16 @@ if (!empty($_GET['id'])) {
 		} else {
 			$src = $dir.$res['file'];
 			$text = Rubrics::article($src);
+			
+			$removeh1 = isset($_GET['removeh1']);
+			$headingstodiv = isset($_GET['headingstodiv']);
+
 			if ($removeh1) {
 				$text = preg_replace('/<h1[^>]*?>.*?<\/h1>/si', '', $text);
 				
+			}
+			if ($headingstodiv) {
+				$text = preg_replace('/<(h\d)[^>]*?>(.*?)<\/h\d>/si', '<div class="${1}">${2}</div>', $text);
 			}
 			if (Ans::isReturn()) return $text;
 			echo $text;
