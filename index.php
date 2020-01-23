@@ -11,6 +11,7 @@ use infrajs\rubrics\Rubrics;
 $ans = array();
 
 $src = Ans::GET('src');
+$removeh1 = isset($_GET['removeh1']);
 if ($src) {
 	if (!Path::isNest('~', $src)) return Ans::err($ans, 'Передан некорректный или небезопасный путь');
 	$id = Ans::GET('id');
@@ -82,6 +83,7 @@ if (!empty($_GET['id'])) {
 	if (isset($_GET['image'])) {
 		if ($res['images']) {
 			$data = file_get_contents(Path::tofs($res['images'][0]['src']));
+			if (Ans::isReturn()) return $data;
 			echo $data;
 		} else {
 			//@header('HTTP/1.1 404 Not Found');
@@ -95,6 +97,11 @@ if (!empty($_GET['id'])) {
 		} else {
 			$src = $dir.$res['file'];
 			$text = Rubrics::article($src);
+			if ($removeh1) {
+				$text = preg_replace('/<h1[^>]*?>.*?<\/h1>/si', '', $text);
+				
+			}
+			if (Ans::isReturn()) return $text;
 			echo $text;
 			return;
 		}
