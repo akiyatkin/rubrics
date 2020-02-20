@@ -13,30 +13,29 @@
 	{data.info.gallery::bigimg}
 </div>
 <a href="/{parent.crumb}">{parent.config.title}</a>
-<script>
-	domready(function(){
-		var div = $('.phorts-list');
-		if (!div.magnificPopup) {
-			console.info('Требуется magnificPopup');
-			return;
-		}
-		div.find('a').magnificPopup({
+<script async type="module">
+	(async () => {
+		let Load = (await import('/vendor/akiyatkin/load/Load.js')).default
+		let CDN = await Load.on('import-default', '/vendor/akiyatkin/load/CDN.js')
+		let div = document.getElementById('{div}')
+		await CDN.load('magnific-popup')
+		
+		$(div).find('a.gallery').magnificPopup({
 			type: 'image',
 			gallery:{
 				enabled:true
 			}
-		});
-		var hash = location.hash;
-		if(hash){
-			hash = hash.replace(/^#/,'');
-			if (hash=='show') {
-				div.find('a:first').click();
+		})
+		var hash = location.hash
+		if (hash) {
+			hash = hash.replace(/^#/, '')
+			if (hash == 'show') {
+				div.find('a:first').click()
 			} else {
-				
-				var el = document.getElementById('img-'+hash);
-				$(el).click();
+				var el = document.getElementById('img-'+hash)
+				$(el).click()
 			}
 		}
-	});
+	})()
 </script>
 {bigimg:}<a id="img-{name}" href="/-imager/?src={...gallerydir}{~encode(file)}"><img style="width:20%" src="/-imager/?w=400&h=300&crop=1&src={~encode(...gallerydir)}{~encode(file)}&top=1"></a>

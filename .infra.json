@@ -6,12 +6,6 @@
 	"404":"Статья на сайте не найдена.",
 	"main":"pages",
 	"link":"Перейти на главную страницу",
-	"clutch":{
-		"magnific-popup":[
-			"vendor/dimsemenov/",
-			"vendor/infrajs/rubrics/"
-		]
-	},
 	"list":{
 		"pages":{
 			"title":"Информация",

@@ -6,15 +6,13 @@
 		"infrajs/doc": "~1",
 		"infrajs/template":"~1",
 		"infrajs/load":"~1",
-		"ded/domready":"~1",
 		"infrajs/path":"~1",
 		"infrajs/nostore":"~1",
 		"infrajs/imager":"~1",
 		"infrajs/cache":"~1",
 		"infrajs/ans":"~1",
 		"infrajs/router":"~1",
-		"infrajs/config":"~1",
-		"dimsemenov/magnific-popup":"~1"
+		"infrajs/config":"~1"
 	},
 	"autoload": {
 		"psr-4": { "infrajs\\rubrics\\": "/" }
