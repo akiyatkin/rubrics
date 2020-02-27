@@ -38,7 +38,8 @@ class Rubrics {
 	public static function search($type, $id) {
 		if (!isset(Rubrics::$conf['list'][$type])) return false;
 		$exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
-		$files = rub_list('~'.$type.'/', 0, 0, $exts);
+		$dir = rub_getdir($type);
+		$files = rub_list($dir, 0, 0, $exts);
 		
 
 		if (isset($files[$id])) {
@@ -135,7 +136,7 @@ class Rubrics {
 			if ($dir) {
 				$list = array();
 				array_map(function ($file) use (&$list, $src) {
-					if ($file{0} == '.') return;
+					if ($file[0] == '.') return;
 					//if (!is_file($dir.$file)) return;
 					$fd = Load::nameinfo(Path::toutf($file));
 					if (!in_array($fd['ext'],['jpeg', 'jpg', 'png'])) return;
