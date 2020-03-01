@@ -12,13 +12,11 @@
 				"tpl":"-rubrics/rubrics.tpl",
 				"tplroot":"404",
 				"parsedtpl":"{crumb.name}",
-				"autoedittpl":{"fast": "~{Config.get(:rubrics).main}/{crumb.name}"},
 				"showanimate":true,
 				"layers":{
 					"seojsontpl":"~{Config.get(:rubrics).main}/{crumb.name}.json",
 					"istpl":"{infrajs.names.rubrics.childs[crumb.name]??:yes}",
 					"tplcheck":true,
-					"autoedittpl":{"fast":"~{Config.get(:rubrics).main}/{crumb.name}"},
 					"tpltpl":"-rubrics/?type={Config.get(:rubrics).main}&id={crumb.name}&show"
 				}
 			},
@@ -34,7 +32,6 @@
 			"seojsontpl":"~{crumb.name}/index.json",
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
 			"tplroot":"root",
-			"autoedittpl":{"fast":"~{crumb.name}/"},
 			"divs":{
 				"rubricstitle":{
 					"tpl":"-rubrics/rubrics.tpl",
@@ -48,7 +45,6 @@
 						"seojsontpl":"~{crumb.parent.name}/{crumb.name}.json",
 						"showanimate":true,
 						"tpltpl":"-rubrics/?type={crumb.parent.name}&show&id={crumb.name}",
-						"autoedittpl":{ "fast":"~{crumb.parent.name}/{crumb.name}" },
 						"divs":{
 							"rubricstitle":{
 								"tpl":[""]
@@ -66,7 +62,6 @@
 			"seojsontpl":"~seo/{crumb.name}.json",
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div>"],
 			"tplroot":"root",
-			"autoedittpl":{"fast":"~{crumb.name}/"},
 			"divs":{
 				"rubricstitle":{
 					"tpl":["<h1>{Config.get(:rubrics).list[crumb.name].title}</h1>"],
@@ -91,13 +86,11 @@
 				"rubricscontent":{
 					"tpl":"-rubrics/rubrics.tpl",
 					"tplroot":"PAGES",
-					"autoedittpl":{"fast":"~{crumb.name}/"},
 					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
 					"child":{
 						"seojsontpl":"~{crumb.parent.name}/{crumb.name}.json",
 						"showanimate":true,
 						"tpltpl":"-rubrics/?type={crumb.parent.name}&show&id={crumb.name}",
-						"autoedittpl":{ "fast":"~{crumb.parent.name}/{crumb.name}" },
 						"divs":{
 							"rubricstitle":{
 								"tpl":"-rubrics/rubrics.tpl",
