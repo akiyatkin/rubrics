@@ -15,7 +15,7 @@
 				"showanimate":true,
 				"layers":{
 					"seojsontpl":"~{Config.get(:rubrics).main}/{crumb.name}.json",
-					"istpl":"{infrajs.names.rubrics.childs[crumb.name]??:yes}",
+					"istpl":"{Controller.names.rubrics.childs[crumb.name]??:yes}",
 					"tplcheck":true,
 					"tpltpl":"-rubrics/?type={Config.get(:rubrics).main}&id={crumb.name}&show"
 				}
