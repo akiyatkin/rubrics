@@ -13,7 +13,7 @@
 	{data.info.gallery::bigimg}
 </div>
 <a href="/{parent.crumb}">{parent.config.title}</a>
-<script async type="module">
+<script type="module">
 	(async () => {
 		let CDN = (await import('/vendor/akiyatkin/load/CDN.js')).default
 		let div = document.getElementById('{div}')
