@@ -14,8 +14,8 @@
 </div>
 <a href="/{parent.crumb}">{parent.config.title}</a>
 <script type="module">
+	import { CDN } from '/vendor/akiyatkin/load/CDN.js'
 	(async () => {
-		let CDN = (await import('/vendor/akiyatkin/load/CDN.js')).default
 		let div = document.getElementById('{div}')
 		await CDN.load('magnific-popup')
 		
