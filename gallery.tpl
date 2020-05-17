@@ -17,7 +17,7 @@
 	import { CDN } from '/vendor/akiyatkin/load/CDN.js'
 	(async () => {
 		let div = document.getElementById('{div}')
-		await CDN.load('magnific-popup')
+		await CDN.on('load','magnific-popup')
 		
 		$(div).find('a.gallery').magnificPopup({
 			type: 'image',
