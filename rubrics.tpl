@@ -16,7 +16,7 @@
 	{Fitem:}
 		<tr>
 			<td>
-				<img src="/-imager/?src=-autoedit/icons/{ext}.png&amp;w=16"></td>
+				<img src="/-imager/?src=-rubrics/icons/{ext}.png&amp;w=16"></td>
 			<td><a href="/-rubrics/?id={id|name}&amp;type={crumb.name}&amp;load" title="{file}">{name}</a></td>
 			<td>{size}&nbsp;Mb</td>
 			<td>{~date(:j.m.Y,date)}</td>
