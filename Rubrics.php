@@ -78,6 +78,7 @@ class Rubrics
 		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
 		if ($what == 'image') $exts = array('jpg', 'gif', 'png', 'jpeg');
 		if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		if ($what == 'json') $exts = array('json');
 		if ($what == 'html') $exts = array('tpl', 'html');
 		if ($what == 'doc') $exts = array('docx', 'mht');
 		if ($what == 'dir') $exts = array();
@@ -140,11 +141,14 @@ class Rubrics
 				}
 			}
 		}
+			
 		if (!empty($rr['name'])) {
 			$slide = Rubrics::find($rr['folder'], $rr['name'], 'images');
 			if ($slide) $rr['slide'] = $slide;
-		}
-		if (!empty($rr['name'])) {
+
+			$json = Rubrics::find($rr['folder'], $rr['name'], 'json');
+			if ($json) $rr['json'] = Load::loadJSON($json);
+
 			$dir = Path::theme($rr['folder'] . $rr['name'] . '/');
 			if ($dir) {
 				$list = array();
