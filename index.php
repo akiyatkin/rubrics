@@ -126,8 +126,11 @@ if (!empty($_GET['id'])) {
 			//@header("HTTP/1.0 404 Not Found");
 			@header('location: '.View::getPath().'?'.$type.'/'.$id);//Просто редирект на страницу со списокм всех файлов
 		} else {
-			$src = View::getPath().$dir.urlencode($res['file']);
-			@header('location: '.$src);
+			
+			$src = Path::theme($dir.$res['file']);
+			Rubrics::file_force_download($src);
+			//$src = View::getPath().$dir.$res['file'];
+			//@header('location: '.$src);
 		}
 		exit;
 	} else {
