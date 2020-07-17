@@ -120,15 +120,14 @@ if (!empty($_GET['id'])) {
 		$ans['info'] = $info;
 		return Ans::ret($ans);
 	} elseif (isset($_GET['load'])) {
-
+		
 		if (!$res) {
 			//@header("Status: 404 Not Found");
 			//@header("HTTP/1.0 404 Not Found");
 			@header('location: '.View::getPath().'?'.$type.'/'.$id);//Просто редирект на страницу со списокм всех файлов
 		} else {
-			//echo View::getPath().$dir.$res['file'];
-			//exit;
-			@header('location: '.View::getPath().$dir.$res['file']);
+			$src = View::getPath().$dir.urlencode($res['file']);
+			@header('location: '.$src);
 		}
 		exit;
 	} else {
