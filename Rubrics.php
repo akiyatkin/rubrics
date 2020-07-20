@@ -178,10 +178,17 @@ class Rubrics
 			if (ob_get_level()) {
 			ob_end_clean();
 			}
+			$info = Load::srcInfo($file);
+			$name = $info['file'];
+			$name = rawurlencode($name);
+			$src = $info['folder'].$name;
+			header('Location: /'.$src);
+			exit;
 			// заставляем браузер показать окно сохранения файла
 			header('Content-Description: File Transfer');
 			header('Content-Type: application/octet-stream');
-			header('Content-Disposition: attachment; filename=' . basename($file));
+			//header('Content-Disposition: attachment; filename=' . urlencode($name));
+			header('Content-Disposition: attachment; filename=' . $name);
 			header('Content-Transfer-Encoding: binary');
 			header('Expires: 0');
 			header('Cache-Control: must-revalidate');
