@@ -74,14 +74,14 @@ class Rubrics
 	public static function find($dir, $id, $what = 'articles')
 	{
 		if (is_array($what)) $exts = $what;
-		if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg');
-		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
-		if ($what == 'image') $exts = array('jpg', 'gif', 'png', 'jpeg');
-		if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
-		if ($what == 'json') $exts = array('json');
-		if ($what == 'html') $exts = array('tpl', 'html');
-		if ($what == 'doc') $exts = array('docx', 'mht');
-		if ($what == 'dir') $exts = array();
+		else if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg');
+		else if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		else if ($what == 'image') $exts = array('jpg', 'gif', 'png', 'jpeg');
+		else if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
+		else if ($what == 'json') $exts = array('json');
+		else if ($what == 'html') $exts = array('tpl', 'html');
+		else if ($what == 'doc') $exts = array('docx', 'mht');
+		else if ($what == 'dir') $exts = array();
 		else $exts = false;
 
 		$files = rub_list($dir, 0, 0, $exts);
