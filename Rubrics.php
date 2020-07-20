@@ -82,6 +82,7 @@ class Rubrics
 		if ($what == 'html') $exts = array('tpl', 'html');
 		if ($what == 'doc') $exts = array('docx', 'mht');
 		if ($what == 'dir') $exts = array();
+		else $exts = false;
 
 		$files = rub_list($dir, 0, 0, $exts);
 		if (isset($files[$id])) {

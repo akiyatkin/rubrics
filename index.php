@@ -15,6 +15,7 @@ $src = Ans::GET('src');
 
 if ($src) {
 	if (!Path::isNest('~', $src)) return Ans::err($ans, 'Передан некорректный или небезопасный путь');
+	$src = Path::theme($src);
 	$id = Ans::GET('id');
 	$ext = Ans::GET('ext','string','article');
 	
@@ -30,6 +31,20 @@ if ($src) {
 		if (!$src) return Ans::err($ans,'Файл не найден');
 		$ans['src'] = $src;
 		return Ans::ret($ans);
+	} else if (isset($_GET['load'])) { 
+		if ($id) {
+			$src = Rubrics::find($src, $id, false);
+		} else {
+			$src = Path::theme($src);
+		}
+		if (!$src) {
+			@header('HTTP/1.1 404 Not Found');
+			exit;
+		} else {
+			Rubrics::file_force_download($src);
+			//$src = View::getPath().$dir.$res['file'];
+			//@header('location: '.$src);
+		}
 	} else {
 		$src = Rubrics::find($src, $id);
 		$text = Rubrics::article($src);	
