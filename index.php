@@ -109,7 +109,7 @@ if (!empty($_GET['id'])) {
 	} elseif (isset($_GET['show'])) {
 		if (!$res) {
 			header("HTTP/1.0 404 Not Found");
-			return;
+			exit;
 		} else {
 			$src = $dir.$res['file'];
 			$text = Rubrics::article($src);
