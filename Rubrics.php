@@ -6,8 +6,7 @@ use infrajs\load\Load;
 use infrajs\path\Path;
 use infrajs\doc\Docx;
 use infrajs\doc\Mht;
-use akiyatkin\boo\Cache;
-use infrajs\cache\Cache as OldCache;
+use infrajs\cache\Cache;
 use infrajs\template\Template;
 
 Path::req('-rubrics/rubrics.inc.php');
@@ -142,7 +141,7 @@ class Rubrics
 				}
 			}
 		}
-			
+
 		if (!empty($rr['name'])) {
 			$slide = Rubrics::find($rr['folder'], $rr['name'], 'images');
 			if ($slide) $rr['slide'] = $slide;
@@ -171,18 +170,19 @@ class Rubrics
 		}
 		return $rr;
 	}
-	public static function file_force_download($file) {
+	public static function file_force_download($file)
+	{
 		if (file_exists($file)) {
 			// сбрасываем буфер вывода PHP, чтобы избежать переполнения памяти выделенной под скрипт
 			// если этого не сделать файл будет читаться в память полностью!
 			if (ob_get_level()) {
-			ob_end_clean();
+				ob_end_clean();
 			}
 			$info = Load::srcInfo($file);
 			$name = $info['file'];
 			$name = rawurlencode($name);
-			$src = $info['folder'].$name;
-			header('Location: /'.$src);
+			$src = $info['folder'] . $name;
+			header('Location: /' . $src);
 			exit;
 			// заставляем браузер показать окно сохранения файла
 			header('Content-Description: File Transfer');
@@ -305,7 +305,7 @@ END;
 	}
 	public static function article($src)
 	{
-		return Cache::exec('Подготовленные статьи', function ($src) {
+		return Cache::exec([$src], 'Подготовленные статьи', function ($src) {
 			$html = Load::loadTEXT('-doc/get.php?src=' . $src);
 			$info = Load::srcInfo($src);
 			if (!in_array($info['ext'], array('html', 'tpl', 'php'))) {
@@ -314,6 +314,6 @@ END;
 				$soft = false;
 			}
 			return Rubrics::parse($html, $soft);
-		}, array($src), ['akiyatkin\boo\Cache', 'getModifiedTime'], [$src]);
+		}, array($src));
 	}
 }
