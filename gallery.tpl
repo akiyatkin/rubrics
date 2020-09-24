@@ -15,10 +15,12 @@
 <a href="/{parent.crumb}">{parent.config.title}</a>
 <script type="module">
 	import { CDN } from '/vendor/akiyatkin/load/CDN.js'
-	(async () => {
-		let div = document.getElementById('{div}')
-		await CDN.on('load','magnific-popup')
-		
+	
+	const div = document.getElementById('{div}')
+	const cls = (cls, el = div) => el.getElementsByClassName(cls)
+	const block = cls('phorts-list')[0]
+	const items = cls('gallery', block)
+	if (items.length) CDN.fire('load','magnific-popup').then(() => {
 		$(div).find('a.gallery').magnificPopup({
 			type: 'image',
 			gallery:{
@@ -35,6 +37,6 @@
 				$(el).click()
 			}
 		}
-	})()
+	})
 </script>
 {bigimg:}<a class="gallery" id="img-{name}" href="/-imager/?src={...gallerydir}{~encode(file)}"><img style="width:20%" src="/-imager/?w=400&h=300&crop=1&src={~encode(...gallerydir)}{~encode(file)}&top=1"></a>
