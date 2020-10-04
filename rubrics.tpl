@@ -34,12 +34,12 @@
 	</div>
 	{Pitem:}
 		<div style="margin-top:1em">
-			<div style="font-size:1.4em;">{heading|name}</div>
+			<h4>{heading|name}</h4>
 			{data.type.onlyyear?date:Pdateyear?date:Pdate}
 			{images.0:imgt}
 			{preview}
 			{images.0:imgb}
-			<a style="float: right;" href="/{:link}{name}">Читать полностью</a>
+			<a href="/{:link}{name}">Читать полностью</a>
 			<div style="clear:both"></div>
 		</div>
 		<hr>
@@ -51,10 +51,10 @@
 {link:}{~conf.rubrics.main=crumb.name??:cn}
 	{cn:}{link|crumb.name}/
 {imgt:}
-<a class="d-none d-md-block" href="/{:link}{name}">
+<a class="d-none d-md-block" href="/{:link}{...name}">
 	<img class="img-thumbnail ml-2 mb-2 float-right" src="/-imager/?src={src}&w=360">
 </a>
 {imgb:}
-<a class="d-block d-md-none" href="/{:link}{name}">
+<a class="d-block d-md-none" href="/{:link}{...name}">
 	<img class="img-thumbnail mb-2 img-fluid" src="/-imager/?src={src}&w=800&h=400&crop=1">
 </a>
