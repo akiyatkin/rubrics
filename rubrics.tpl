@@ -33,7 +33,7 @@
 		{data.list::Pitem}
 	</div>
 	{Pitem:}
-		<div style="margin-top:1em">
+		<div style="margin-top:1em" id="item{~key}">
 			<h4>{heading|name}</h4>
 			{data.type.onlyyear?date:Pdateyear?date:Pdate}
 			{images.0:imgt}
