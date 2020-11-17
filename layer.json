@@ -14,7 +14,6 @@
 				"parsedtpl":"{crumb.name}",
 				"showanimate":true,
 				"layers":{
-					"seojsontpl":"~{Config.get(:rubrics).main}/{crumb.name}.json",
 					"istpl":"{Controller.names.rubrics.childs[crumb.name]??:yes}",
 					"tplcheck":true,
 					"tpltpl":"-rubrics/?type={Config.get(:rubrics).main}&id={crumb.name}&show"
@@ -29,7 +28,6 @@
 	"childs":{
 		"info":{
 			"config":{ },
-			"seojsontpl":"~{crumb.name}/index.json",
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
 			"tplroot":"root",
 			"divs":{
@@ -41,8 +39,7 @@
 					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
 					"tpl":"-rubrics/rubrics.tpl",
 					"tplroot":"PAGES",
-					"child":{
-						"seojsontpl":"~{crumb.parent.name}/{crumb.name}.json",
+					"child":{						
 						"showanimate":true,
 						"tpltpl":"-rubrics/?type={crumb.parent.name}&show&id={crumb.name}",
 						"divs":{
@@ -59,7 +56,6 @@
 			}
 		},
 		"files":{
-			"seojsontpl":"~seo/{crumb.name}.json",
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div>"],
 			"tplroot":"root",
 			"divs":{
@@ -77,7 +73,6 @@
 		"list":{
 			"config":{ },
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
-			"seojsontpl":"~{crumb.name}/index.json",
 			"divs":{
 				"rubricstitle":{
 					"tpl":"-rubrics/rubrics.tpl",
@@ -88,7 +83,6 @@
 					"tplroot":"PAGES",
 					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
 					"child":{
-						"seojsontpl":"~{crumb.parent.name}/{crumb.name}.json",
 						"showanimate":true,
 						"tpltpl":"-rubrics/?type={crumb.parent.name}&show&id={crumb.name}",
 						"divs":{
