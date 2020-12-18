@@ -74,6 +74,9 @@
 			"config":{ },
 			"tpl":["<div id='rubricstitle'></div><div id='rubricscontent'></div><div id='rubricsgallery'></div>"],
 			"divs":{
+				"rubricsgallery":{
+					"tpl":[""]
+				},
 				"rubricstitle":{
 					"tpl":"-rubrics/rubrics.tpl",
 					"tplroot":"PAGESTITLE"
