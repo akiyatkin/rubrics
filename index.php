@@ -108,8 +108,9 @@ if (!empty($_GET['id'])) {
 		return;
 	} elseif (isset($_GET['show'])) {
 		if (!$res) {
+			echo Path::req(Router::$conf['404']);
 			header("HTTP/1.0 404 Not Found");
-			exit;
+			//exit;
 		} else {
 			$src = $dir.$res['file'];
 			$text = Rubrics::article($src);
