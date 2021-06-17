@@ -42,4 +42,4 @@
 			}
 		})
 	</script>
-{bigimg:}<a style="border:none" class="gallery" id="img-{name}" href="/-imager/?src={...gallerydir}{~encode(file)}"><img style="width:20%" src="/-imager/?w=400&h=300&crop=1&src={~encode(...gallerydir)}{~encode(file)}&top=1"></a>
+{bigimg:}<a style="border:none" class="gallery" id="img-{name}" href="/-imager/?src={...gallerydir}{~encode(file)}"><img loading="lazy" style="width:20%" src="/-imager/?w=400&h=300&crop=1&src={~encode(...gallerydir)}{~encode(file)}&top=1"></a>
