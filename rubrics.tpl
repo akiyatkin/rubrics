@@ -5,7 +5,7 @@
 		<li class="breadcrumb-item"><a href="/{crumb.parent.name}">{~conf.rubrics.list[crumb.parent.name].title}</a></li>
 		<li class="breadcrumb-item active">{data.info.heading}</li>
 	</ol>
-	<div class="float-right badge badge-secondary">{data.info.date:date}</div>
+	<div style="float: right" class="badge badge-secondary">{data.info.date:date}</div>
 {404:}
 	<h1>{crumb.name}</h1><p>{Config.get(:rubrics).404}</p><p><a href='/'>{Config.get(:rubrics).link}</a></p>
 {comma:},
