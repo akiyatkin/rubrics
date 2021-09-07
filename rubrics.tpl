@@ -76,6 +76,6 @@
 {link:}{~conf.rubrics.main=crumb.name??:cn}
 	{cn:}{link|crumb.name}/
 {imgt:}
-	<a href="/{:link}{...name}">
+	<a style="border: none; " href="/{:link}{...name}">
 		<img style="max-width:100%" src="/-imager/?src={src}&w=360">
 	</a>
