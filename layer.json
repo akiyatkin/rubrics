@@ -85,9 +85,11 @@
 					"tpl":"-rubrics/rubrics.tpl",
 					"tplroot":"PAGES",
 					"jsontpl":"-rubrics/?type={crumb.name}&list&lim=0,50",
+
 					"child":{
 						"showanimate":true,
 						"tpltpl":"-rubrics/?type={crumb.parent.name}&show&id={crumb.name}",
+						"seojsontpl":"-rubrics/seo/bytype?type={crumb.parent.name}&id={crumb.name}",
 						"divs":{
 							"rubricstitle":{
 								"tpl":"-rubrics/rubrics.tpl",
