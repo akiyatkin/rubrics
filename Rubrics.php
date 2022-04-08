@@ -59,23 +59,23 @@ class Rubrics
 	public static function list($dir, $what = 'articles')
 	{
 		if (is_array($what)) $exts = $what;
-		if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg');
+		if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg', 'webp');
 		if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
-		if ($what == 'image') $exts = array('jpg', 'gif', 'png', 'jpeg');
+		if ($what == 'image') $exts = array('jpg', 'gif', 'png', 'jpeg', 'webp');
 		if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
 		if ($what == 'html') $exts = array('tpl', 'html');
 		if ($what == 'doc') $exts = array('docx', 'mht');
 		if ($what == 'dir') $exts = array();
-
+		
 		$files = rub_list($dir, 0, 0, $exts);
 		return $files;
 	}
 	public static function find($dir, $id, $what = 'articles')
 	{
 		if (is_array($what)) $exts = $what;
-		else if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg');
+		else if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg', 'webp');
 		else if ($what == 'articles') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
-		else if ($what == 'image') $exts = array('jpg', 'gif', 'png', 'jpeg');
+		else if ($what == 'image') $exts = array('jpg', 'gif', 'png', 'jpeg', 'webp');
 		else if ($what == 'article') $exts = array('docx', 'mht', 'tpl', 'html', 'txt', 'php');
 		else if ($what == 'json') $exts = array('json');
 		else if ($what == 'html') $exts = array('tpl', 'html');
@@ -156,7 +156,7 @@ class Rubrics
 					if ($file[0] == '.') return;
 					//if (!is_file($dir.$file)) return;
 					$fd = Load::nameinfo(Path::toutf($file));
-					if (!in_array($fd['ext'], ['jpeg', 'jpg', 'png'])) return;
+					if (!in_array($fd['ext'], ['jpeg', 'jpg', 'png', 'webp'])) return;
 					$list[] = $fd;
 				}, scandir($dir));
 				Load::sort($list, 'ascending');
