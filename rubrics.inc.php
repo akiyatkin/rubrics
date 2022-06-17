@@ -8,9 +8,9 @@ use infrajs\config\Config;
 use infrajs\doc\Mht;
 use infrajs\rubrics\Rubrics;
 
-function rub_search($dir, $str, $exts)
+function rub_search($dir, $str, $exts, $lang = false)
 {
-	$files = rub_list($dir, 0, 0, $exts);
+	$files = rub_list($dir, 0, 0, $exts, $lang);
 
 	if (!empty($files[$str])) {
 		$files[$str]['idfinded'] = true;//Найдено по id
@@ -64,16 +64,16 @@ function rub_get($type, $id, $exts)
 
 	return $res;
 }
-function rub_list($src, $start = 0, $count = 0, $exts = array())
+function rub_list($src, $start = 0, $count = 0, $exts = array(), $lang = false)
 {
 
-	$files = Cache::exec([$src], 'Содержимое рубрик', function ($src, $start, $count, $exts) {
-		return _rub_list($src, $start, $count, $exts);
-	}, array($src, $start, $count, $exts));
+	$files = Cache::exec([$src], 'Содержимое рубрик', function ($src, $start, $count, $exts, $lang) {
+		return _rub_list($src, $start, $count, $exts, $lang);
+	}, array($src, $start, $count, $exts, $lang));
 
 	return $files;
 }
-function _rub_list($src, $start, $count, $exts)
+function _rub_list($src, $start, $count, $exts, $lang)
 {
 	$res = array();
 	$dir = Path::theme($src);
@@ -93,6 +93,7 @@ function _rub_list($src, $start, $count, $exts)
 			}
 			//depricated -> Rubrics::info();
 			$rr = Load::nameInfo(Path::toutf($file));
+			if ($lang && $rr['lang'] && $rr['lang'] != $lang) continue;
 			$ext = $rr['ext'];
 			if ($exts && !in_array($ext, $exts)) continue;
 			$size = filesize($dir.$file);

@@ -1,7 +1,6 @@
 {TITLE:}
-	
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="/">Главная</a></li>
+		<li class="breadcrumb-item"><a href="/">{Lang.name()=:ru?:Главная?:Home}</a></li>
 		<li class="breadcrumb-item"><a href="/{crumb.parent.name}">{~conf.rubrics.list[crumb.parent.name].title}</a></li>
 		<li class="breadcrumb-item active">{data.info.heading}</li>
 	</ol>
@@ -23,7 +22,7 @@
 		</tr>
 {PAGESTITLE:}
 	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="/">Главная</a></li>
+		<li class="breadcrumb-item"><a href="/">{Lang.name()=:ru?:Главная?:Home}</a></li>
 		<li class="active breadcrumb-item">{~conf.rubrics.list[crumb.name].title|data.heading}</li>
 	</ol>
 	{~conf.rubrics.list[crumb.name].title:h1title}

@@ -11,7 +11,7 @@ use infrajs\rubrics\Rubrics;
 $ans = array();
 
 $src = Ans::GET('src');
-
+$lang = Ans::GET('lang');
 
 if ($src) {
 	if (!Path::isNest('~', $src)) return Ans::err($ans, 'Передан некорректный или небезопасный путь');
@@ -79,7 +79,7 @@ if (!empty($_GET['id'])) {
 	//Загрузка файла
 	$id = Path::toutf($_GET['id']);
 
-	$res = rub_search($dir, $id, $exts);
+	$res = rub_search($dir, $id, $exts, $lang);
 
 	
 	if ($res && $id != $res['name']) { //Обращаться к страницам можно по id
@@ -108,7 +108,12 @@ if (!empty($_GET['id'])) {
 		return;
 	} elseif (isset($_GET['show'])) {
 		if (!$res) {
-			echo Path::req(Router::$conf['404']);
+			echo '<h1>'.$id.'</h1>';
+			if (!$lang || $lang == 'ru') {
+				echo '<p>Ошибка 404. Статья на сайте не найдена.</p>';
+			} else {
+				echo '<p>Error 404. The article was not found on the site.</p>';
+			}			
 			header("HTTP/1.0 404 Not Found");
 			//exit;
 		} else {
@@ -167,7 +172,7 @@ if (!empty($_GET['id'])) {
 	$count = (int)$p[1];
 
 
-	$ar = rub_list($dir, $start, $count, $exts);
+	$ar = rub_list($dir, $start, $count, $exts, $lang);
 	$ar = array_values($ar);
 	if (!empty($_GET['chunk'])) {
 		$chunk = (int) $_GET['chunk'];
