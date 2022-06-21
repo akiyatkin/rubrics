@@ -22,7 +22,7 @@ if ($src) {
 	
 
 	if (isset($_GET['gallery'])) {
-		$src = Rubrics::find($src, $id);
+		$src = Rubrics::find($src, $id, 'articles', $lang);
 		$info = Rubrics::info($src);
 		$ans['info'] = $info;
 		return Ans::ret($ans);
@@ -135,8 +135,7 @@ if (!empty($_GET['id'])) {
 			return;
 		}
 	} elseif (isset($_GET['gallery'])) {
-		
-		$src = Rubrics::find($dir,$id);
+		$src = Rubrics::find($dir,$id, 'articles', $lang);
 		$info = Rubrics::info($src);
 		$ans['info'] = $info;
 		return Ans::ret($ans);

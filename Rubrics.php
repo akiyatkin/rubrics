@@ -70,7 +70,7 @@ class Rubrics
 		$files = rub_list($dir, 0, 0, $exts);
 		return $files;
 	}
-	public static function find($dir, $id, $what = 'articles')
+	public static function find($dir, $id, $what = 'articles', $lang = false)
 	{
 		if (is_array($what)) $exts = $what;
 		else if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg', 'webp');
@@ -83,7 +83,7 @@ class Rubrics
 		else if ($what == 'dir') $exts = array();
 		else $exts = false;
 
-		$files = rub_list($dir, 0, 0, $exts);
+		$files = rub_list($dir, 0, 0, $exts, $lang);
 		if (isset($files[$id])) {
 			$files[$id]['idfinded'] = true; //Найдено по id
 			$src = $dir . $files[$id]['file'];
