@@ -56,7 +56,7 @@ class Rubrics
 		}
 		return array();
 	}
-	public static function list($dir, $what = 'articles')
+	public static function list($dir, $what = 'articles', $lang = false)
 	{
 		if (is_array($what)) $exts = $what;
 		if ($what == 'images') $exts = array('jpg', 'gif', 'png', 'jpeg', 'webp');
@@ -67,7 +67,7 @@ class Rubrics
 		if ($what == 'doc') $exts = array('docx', 'mht');
 		if ($what == 'dir') $exts = array();
 		
-		$files = rub_list($dir, 0, 0, $exts);
+		$files = rub_list($dir, 0, 0, $exts, $lang);
 		return $files;
 	}
 	public static function find($dir, $id, $what = 'articles', $lang = false)
