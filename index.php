@@ -114,7 +114,7 @@ if (!empty($_GET['id'])) {
 			} else {
 				echo '<p>Error 404. The article was not found on the site.</p>';
 			}			
-			header("HTTP/1.0 404 Not Found");
+			@header("HTTP/1.0 404 Not Found");
 			//exit;
 		} else {
 			$src = $dir.$res['file'];
